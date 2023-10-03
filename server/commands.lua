@@ -138,6 +138,7 @@ lib.addCommand('car', {
 }, function(source, args)
     if not args then return end
     SpawnVehicle(source, args[Lang:t("command.car.params.model.name")], nil, true)
+    TriggerClientEvent('vehiclekeys:client:SetOwnerByNetId', source, netId)
 end)
 
 lib.addCommand('dv', {

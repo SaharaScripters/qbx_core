@@ -141,6 +141,7 @@ lib.addCommand('car', {
     },
     restricted = "group.admin"
 }, function(source, args)
+    local src = source
     if not args then return end
     local netId = SpawnVehicle(source, args[Lang:t("command.car.params.model.name")], nil, true)
     local plate = GetPlate(NetworkGetEntityFromNetworkId(netId))

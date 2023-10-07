@@ -175,8 +175,8 @@ local function spawnDefault() -- We use a callback to make the server wait on th
 
     TriggerServerEvent('QBCore:Server:OnPlayerLoaded')
     TriggerEvent('QBCore:Client:OnPlayerLoaded')
-    TriggerServerEvent('qb-houses:server:SetInsideMeta', 0, false)
-    TriggerServerEvent('qb-apartments:server:SetInsideMeta', 0, 0, false)
+    --TriggerServerEvent('qb-houses:server:SetInsideMeta', 0, false)
+    --TriggerServerEvent('qb-apartments:server:SetInsideMeta', 0, 0, false)
 
     while not IsScreenFadedIn() do
         Wait(0)

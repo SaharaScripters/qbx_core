@@ -94,6 +94,14 @@ function CheckPlayerData(source, playerData)
     playerData.charinfo.cid = playerData.charinfo.cid or playerData.cid
     -- Metadata
     playerData.metadata = playerData.metadata or {}
+     -- Carboot Metadata   
+    playerData.metadata.carboostclass = playerData.metadata.carboostclass or 'D'
+    playerData.metadata.carboostrep = playerData.metadata.carboostrep or 0
+    playerData.metadata.laptopdata = playerData.metadata.laptopdata or {
+        wallpaper = 'default',
+        apps = {}
+    }
+    -- Carboot Metadata End
     playerData.metadata.health = playerData.metadata.health or 200
     playerData.metadata.hunger = playerData.metadata.hunger or 100
     playerData.metadata.thirst = playerData.metadata.thirst or 100

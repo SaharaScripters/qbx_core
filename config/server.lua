@@ -6,9 +6,9 @@ return {
         ---@alias Money {cash: number, bank: number, crypto: number}
         ---@type Money
         moneyTypes = { cash = 500, bank = 5000, crypto = 0 }, -- type = startamount - Add or remove money types for your server (for ex. blackmoney = 0), remember once added it will not be removed from the database!
-        dontAllowMinus = { 'cash', 'crypto' }, -- Money that is not allowed going in minus
+        dontAllowMinus = { 'cash', 'crypto', 'bank' }, -- Money that is not allowed going in minus
         paycheckTimeout = 10, -- The time in minutes that it will give the paycheck
-        paycheckSociety = false -- If true paycheck will come from the society account that the player is employed at, requires qb-management
+        paycheckSociety = true -- If true paycheck will come from the society account that the player is employed at, requires qb-management
     },
 
     player = {
@@ -25,12 +25,12 @@ return {
         identifierTypes = {
             citizenid = {
                 valueFunction = function()
-                    return tostring(RandomLetter(3) .. RandomNumber(5)):upper()
+                    return tostring('MA' .. RandomNumber(6)):upper()
                 end,
             },
             AccountNumber = {
                 valueFunction = function()
-                    return 'US0' .. math.random(1, 9) .. 'QBX' .. math.random(1111, 9999) .. math.random(1111, 9999) .. math.random(11, 99)
+                    return 'MA0' .. math.random(1, 9) .. 'MRP' .. math.random(1111, 9999) .. math.random(1111, 9999) .. math.random(11, 99)
                 end,
             },
             PhoneNumber = {
@@ -45,7 +45,7 @@ return {
             },
             WalletId = {
                 valueFunction = function()
-                    return 'QB-' .. math.random(11111111, 99999999)
+                    return 'SS-' .. math.random(11111111, 99999999)
                 end,
             },
             SerialNumber = {
@@ -92,26 +92,26 @@ return {
             ['license2:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'] = 5,
         },
 
-        defaultNumberOfCharacters = 3, -- Define maximum amount of default characters (maximum 3 characters defined by default)
+        defaultNumberOfCharacters = 1, -- Define maximum amount of default characters (maximum 3 characters defined by default)
     },
 
     ---@type { name: string, amount: integer, metadata: fun(source: number): table }[]
     starterItems = { -- Character starting items
         { name = 'phone', amount = 1 },
-        { name = 'id_card', amount = 1, metadata = function(source)
-                if GetResourceState('qbx_idcard') ~= 'started' then
-                    error('qbx_idcard resource not found. Required to give an id_card as a starting item')
-                end
-                return exports.qbx_idcard:GetMetaLicense(source, {'id_card'})
-            end
-        },
-        { name = 'driver_license', amount = 1, metadata = function(source)
-                if GetResourceState('qbx_idcard') ~= 'started' then
-                    error('qbx_idcard resource not found. Required to give an id_card as a starting item')
-                end
-                return exports.qbx_idcard:GetMetaLicense(source, {'driver_license'})
-            end
-        },
+        -- { name = 'id_card', amount = 1, metadata = function(source)
+        --         if GetResourceState('qbx_idcard') ~= 'started' then
+        --             error('qbx_idcard resource not found. Required to give an id_card as a starting item')
+        --         end
+        --         return exports.qbx_idcard:GetMetaLicense(source, {'id_card'})
+        --     end
+        -- },
+        -- { name = 'driver_license', amount = 1, metadata = function(source)
+        --         if GetResourceState('qbx_idcard') ~= 'started' then
+        --             error('qbx_idcard resource not found. Required to give an id_card as a starting item')
+        --         end
+        --         return exports.qbx_idcard:GetMetaLicense(source, {'driver_license'})
+        --     end
+        -- },
     },
 
     -- this configuration is for core events only. putting other webhooks here will have no effect
@@ -127,13 +127,13 @@ return {
     },
 
     giveVehicleKeys = function(src, plate)
-        return exports.qbx_vehiclekeys:GiveKeys(src, plate)
+        return exports.ss_vehiclekeys:giveTempKey(src, plate)
     end,
 
     getSocietyAccount = function(accountName)
         return exports.qbx_management:GetAccount(accountName)
     end,
-    
+
     removeSocietyMoney = function(accountName, payment)
         return exports.qbx_management:RemoveMoney(accountName, payment)
     end

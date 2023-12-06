@@ -143,9 +143,15 @@ lib.addCommand('car', {
 }, function(source, args)
     local src = source
     if not args then return end
-    local netId = SpawnVehicle(source, args[Lang:t("command.car.params.model.name")], nil, true)
-    local plate = GetPlate(NetworkGetEntityFromNetworkId(netId))
+    local plate = exports.ss_vspawner:generateUniqPlate('ADM')
     config.giveVehicleKeys(source, plate)
+    TriggerClientEvent('ss_vspawner:client:spawnVehicle', src, {
+        model = args[Lang:t("command.car.params.model.name")],
+        coords = GetEntityCoords(GetPlayerPed(src)),
+        plate = plate,
+        wrap = true,
+        spawnerGroup = 'admin'
+    })
 end)
 
 lib.addCommand('dv', {

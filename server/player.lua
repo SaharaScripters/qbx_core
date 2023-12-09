@@ -94,7 +94,7 @@ function CheckPlayerData(source, playerData)
     playerData.charinfo.cid = playerData.charinfo.cid or playerData.cid
     -- Metadata
     playerData.metadata = playerData.metadata or {}
-     -- Carboot Metadata   
+     -- Carboot Metadata
     playerData.metadata.carboostclass = playerData.metadata.carboostclass or 'D'
     playerData.metadata.carboostrep = playerData.metadata.carboostrep or 0
     playerData.metadata.laptopdata = playerData.metadata.laptopdata or {
@@ -191,7 +191,7 @@ function Logout(source)
     Wait(200)
     QBX.Players[source] = nil
     GlobalState.PlayerCount -= 1
-    TriggerClientEvent('qbx_core:client:playerLoggedOut', source)
+    TriggerClientEvent('ss_multichar:client:playerLoggedOut', source)
 end
 
 exports('Logout', Logout)

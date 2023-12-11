@@ -207,7 +207,7 @@ return {
             },
 		},
 	},
-	['cardealer'] = {
+	['cardealer1'] = {
 		label = 'Vehicle Dealer',
 		defaultDuty = true,
 		offDutyPay = false,
@@ -229,14 +229,130 @@ return {
                 payment = 125
             },
 			[4] = {
-                name = 'Manager',
+                name = 'Owner',
                 isboss = true,
                 bankAuth = true,
                 payment = 150
             },
         },
 	},
-	['mechanic'] = {
+	['cardealer2'] = {
+		label = 'Vehicle Dealer',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Showroom Sales',
+                payment = 75
+            },
+			[2] = {
+                name = 'Business Sales',
+                payment = 100
+            },
+			[3] = {
+                name = 'Finance',
+                payment = 125
+            },
+			[4] = {
+                name = 'Owner',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},
+	['cardealer3'] = {
+		label = 'Vehicle Dealer',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Showroom Sales',
+                payment = 75
+            },
+			[2] = {
+                name = 'Business Sales',
+                payment = 100
+            },
+			[3] = {
+                name = 'Finance',
+                payment = 125
+            },
+			[4] = {
+                name = 'Owner',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},	
+	['motordealer1'] = {
+		label = 'Motocycles Dealer',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Showroom Sales',
+                payment = 75
+            },
+			[2] = {
+                name = 'Business Sales',
+                payment = 100
+            },
+			[3] = {
+                name = 'Finance',
+                payment = 125
+            },
+			[4] = {
+                name = 'Owner',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},
+	['boatdealer1'] = {
+		label = 'Boats Dealer',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Showroom Sales',
+                payment = 75
+            },
+			[2] = {
+                name = 'Business Sales',
+                payment = 100
+            },
+			[3] = {
+                name = 'Finance',
+                payment = 125
+            },
+			[4] = {
+                name = 'Owner',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},	
+	['mechanic1'] = {
 		label = 'Mechanic',
         type = 'mechanic',
 		defaultDuty = true,
@@ -266,6 +382,96 @@ return {
             },
         },
 	},
+	['mechanic2'] = {
+		label = 'Mechanic',
+        type = 'mechanic',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Novice',
+                payment = 75
+            },
+			[2] = {
+                name = 'Experienced',
+                payment = 100
+            },
+			[3] = {
+                name = 'Advanced',
+                payment = 125
+            },
+			[4] = {
+                name = 'Manager',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},
+	['mechanic3'] = {
+		label = 'Mechanic',
+        type = 'mechanic',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Novice',
+                payment = 75
+            },
+			[2] = {
+                name = 'Experienced',
+                payment = 100
+            },
+			[3] = {
+                name = 'Advanced',
+                payment = 125
+            },
+			[4] = {
+                name = 'Manager',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},
+	['mechanic4'] = {
+		label = 'Mechanic',
+        type = 'mechanic',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'Recruit',
+                payment = 50
+            },
+			[1] = {
+                name = 'Novice',
+                payment = 75
+            },
+			[2] = {
+                name = 'Experienced',
+                payment = 100
+            },
+			[3] = {
+                name = 'Advanced',
+                payment = 125
+            },
+			[4] = {
+                name = 'Manager',
+                isboss = true,
+                bankAuth = true,
+                payment = 150
+            },
+        },
+	},	
 	['judge'] = {
 		label = 'Honorary',
 		defaultDuty = true,

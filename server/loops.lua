@@ -39,13 +39,17 @@ local function pay(player)
         sendPaycheck(player, payment)
         return
     end
-    local account = config.getSocietyAccount(job.name)
-    if not account or account == 0 then -- Checks if player is employed by a society
-        sendPaycheck(player, payment)
+    local jobAccountName = job.name
+    if job.name == 'unemployed' then
+        jobAccountName = 'government'
+    end    
+    local account = config.getSocietyAccount(jobAccountName)
+    if not account then -- Checks if player is employed by a society
+        Notify(player.PlayerData.source, Lang:t('error.company_account_doesnt_exist'):format(jobAccountName), 'error')
         return
     end
     if account < payment then -- Checks if company has enough money to pay society
-        Notify(player.PlayerData.source, Lang:t('error.company_too_poor'), 'error')
+        Notify(player.PlayerData.source, Lang:t('error.company_too_poor'):format(jobAccountName), 'error')
         return
     end
     config.removeSocietyMoney(job.name, payment)

@@ -145,9 +145,11 @@ lib.addCommand('car', {
     if not args then return end
     local plate = exports.ss_vspawner:generateUniqPlate('ADM')
     config.giveVehicleKeys(source, plate)
-    TriggerClientEvent('ss_vspawner:client:spawnVehicle', src, {
+    local playerPed = GetPlayerPed(src)
+    local coords = GetEntityCoords(playerPed)
+    exports.ss_vspawner:spawnVehicle(src, {
         model = args[Lang:t("command.car.params.model.name")],
-        coords = GetEntityCoords(GetPlayerPed(src)),
+        coords = vector4(coords.x, coords.y, coords.z, GetEntityHeading(playerPed)),
         plate = plate,
         wrap = true,
         spawnerGroup = 'admin'

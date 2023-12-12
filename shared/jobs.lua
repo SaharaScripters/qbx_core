@@ -18,6 +18,19 @@ return {
             },
         },
 	},
+	['government'] = {
+		label = 'Government',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'President',
+                payment = 1000,
+                isboss = true,
+                bankAuth = true,
+            },
+        },
+	},
 	['police'] = {
 		label = 'LSPD',
         type = 'leo',
@@ -293,7 +306,7 @@ return {
                 payment = 150
             },
         },
-	},	
+	},
 	['motordealer1'] = {
 		label = 'Motocycles Dealer',
 		defaultDuty = true,
@@ -351,7 +364,7 @@ return {
                 payment = 150
             },
         },
-	},	
+	},
 	['mechanic1'] = {
 		label = 'Mechanic',
         type = 'mechanic',
@@ -471,7 +484,7 @@ return {
                 payment = 150
             },
         },
-	},	
+	},
 	['judge'] = {
 		label = 'Honorary',
 		defaultDuty = true,

@@ -26,7 +26,7 @@ CreateThread(function()
 end)
 
 local function sendPaycheck(player, payment)
-    player.Functions.AddMoney('bank', payment)
+    player.Functions.AddMoney('bank', payment, 'paycheck')
     Notify(player.PlayerData.source, Lang:t('info.received_paycheck', {value = payment}))
 end
 

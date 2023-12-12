@@ -134,7 +134,7 @@ return {
         return exports.ss_banking:GetAccount(accountName)
     end,
 
-    removeSocietyMoney = function(accountName, payment)
+    removeSocietyMoney = function(accountName, payment, reason)
         return exports.ss_banking:RemoveMoney(accountName, payment, reason)
     end
 }

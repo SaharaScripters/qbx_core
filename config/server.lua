@@ -131,10 +131,10 @@ return {
     end,
 
     getSocietyAccount = function(accountName)
-        return exports['Renewed-Banking']:getAccountMoney(accountName)
+        return exports.ss_banking:GetAccount(accountName)
     end,
 
     removeSocietyMoney = function(accountName, payment)
-        return exports['Renewed-Banking']:removeAccountMoney(accountName, payment)
+        return exports.ss_banking:RemoveMoney(accountName, payment, reason)
     end
 }

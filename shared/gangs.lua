@@ -5,15 +5,15 @@
 ---@type table<string, Gang>
 return {
 	['none'] = {
-		label = 'No Gang',
+		label = 'NO GANG',
 		grades = {
             [0] = {
                 name = 'Unaffiliated'
             },
         },
 	},
-	['lostmc'] = {
-		label = 'The Lost MC',
+	['black'] = {
+		label = 'BLACK',
 		grades = {
             [0] = {
                 name = 'Recruit'
@@ -31,8 +31,8 @@ return {
             },
         },
 	},
-	['ballas'] = {
-		label = 'Ballas',
+	['mafia1'] = {
+		label = 'MAFIA 1',
 		grades = {
             [0] = {
                 name = 'Recruit'
@@ -50,8 +50,8 @@ return {
             },
         },
 	},
-	['vagos'] = {
-		label = 'Vagos',
+	['mafia2'] = {
+		label = 'MAFIA 2',
 		grades = {
             [0] = {
                 name = 'Recruit'
@@ -69,8 +69,8 @@ return {
             },
         },
 	},
-	['cartel'] = {
-		label = 'Cartel',
+	['gang1'] = {
+		label = 'GANG 1',
 		grades = {
             [0] = {
                 name = 'Recruit'
@@ -88,8 +88,8 @@ return {
             },
         },
 	},
-	['families'] = {
-		label = 'Families',
+	['gang2'] = {
+		label = 'GANG 2',
 		grades = {
             [0] = {
                 name = 'Recruit'
@@ -107,8 +107,8 @@ return {
             },
         },
 	},
-	['triads'] = {
-		label = 'Triads',
+	['gang3'] = {
+		label = 'GANG 3',
 		grades = {
             [0] = {
                 name = 'Recruit'
@@ -125,5 +125,24 @@ return {
                 bankAuth = true
             },
         },
-	}
+	},
+	['gang4'] = {
+		label = 'GANG 4',
+		grades = {
+            [0] = {
+                name = 'Recruit'
+            },
+			[1] = {
+                name = 'Enforcer'
+            },
+			[2] = {
+                name = 'Shot Caller'
+            },
+			[3] = {
+                name = 'Boss',
+                isboss = true,
+                bankAuth = true
+            },
+        },
+	}	
 }

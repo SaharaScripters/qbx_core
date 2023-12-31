@@ -12,8 +12,8 @@ return {
     },
 
     player = {
-        hungerRate = 4.2, -- Rate at which hunger goes down.
-        thirstRate = 3.8, -- Rate at which thirst goes down.
+        hungerRate = 6.2, -- Rate at which hunger goes down.
+        thirstRate = 6.2, -- Rate at which thirst goes down.
 
         ---@enum BloodType
         bloodTypes = {
@@ -97,7 +97,7 @@ return {
 
     ---@type { name: string, amount: integer, metadata: fun(source: number): table }[]
     starterItems = { -- Character starting items
-        { name = 'phone', amount = 1 },
+        -- { name = 'phone', amount = 1 },
         -- { name = 'id_card', amount = 1, metadata = function(source)
         --         if GetResourceState('qbx_idcard') ~= 'started' then
         --             error('qbx_idcard resource not found. Required to give an id_card as a starting item')

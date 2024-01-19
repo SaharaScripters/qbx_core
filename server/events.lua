@@ -1,6 +1,7 @@
 local serverConfig = require 'config.server'.server
 local loggingConfig = require 'config.server'.logging
 local logger = require 'modules.logger'
+local queue = require 'server.queue'
 
 -- Event Handler
 
@@ -15,10 +16,13 @@ AddEventHandler('chatMessage', function(_, _, message)
 end)
 
 AddEventHandler('playerJoining', function()
-    if not serverConfig.checkDuplicateLicense then return end
     local src = source --[[@as string]]
     local license = GetPlayerIdentifierByType(src, 'license2') or GetPlayerIdentifierByType(src, 'license')
     if not license then return end
+    if queue then
+        queue.removePlayerJoining(license)
+    end
+    if not serverConfig.checkDuplicateLicense then return end
     if usedLicenses[license] then
         Wait(0) -- mandatory wait for the drop reason to show up
         DropPlayer(src, Lang:t('error.duplicate_license'))
@@ -86,6 +90,7 @@ local function onPlayerConnecting(name, _, deferrals)
         local success, err = pcall(function()
             local isBanned, Reason = IsPlayerBanned(src --[[@as Source]])
             if isBanned then
+                Wait(0) -- Mandatory wait
                 deferrals.done(Reason)
             end
         end)
@@ -94,6 +99,7 @@ local function onPlayerConnecting(name, _, deferrals)
             deferrals.update(string.format(Lang:t('info.checking_whitelisted'), name))
             success, err = pcall(function()
                 if not IsWhitelisted(src --[[@as Source]]) then
+                    Wait(0) -- Mandatory wait
                     deferrals.done(Lang:t('error.not_whitelisted'))
                 end
             end)
@@ -108,7 +114,15 @@ local function onPlayerConnecting(name, _, deferrals)
     -- wait for database to finish
     databasePromise:next(function()
         deferrals.update(string.format(Lang:t('info.join_server'), name))
-        deferrals.done()
+
+        -- Mandatory wait
+        Wait(0)
+
+        if queue then
+            queue.awaitPlayerQueue(src --[[@as Source]], license, deferrals)
+        else
+            deferrals.done()
+        end
     end, function(err)
         deferrals.done(Lang:t('error.connecting_error'))
         lib.print.error(err)

@@ -49,7 +49,7 @@ end)
 RegisterNetEvent('QBCore:Command:GoToMarker', function()
     local blipMarker <const> = GetFirstBlipInfoId(8)
     if not DoesBlipExist(blipMarker) then
-        Notify(Lang:t("error.no_waypoint"), 'error')
+        Notify(locale("error.no_waypoint"), 'error')
         return 'marker'
     end
 
@@ -120,12 +120,12 @@ RegisterNetEvent('QBCore:Command:GoToMarker', function()
         -- If we can't find the coords, set the coords to the old ones.
         -- We don't unpack them before since they aren't in a loop and only called once.
         SetPedCoordsKeepVehicle(ped, oldCoords.x, oldCoords.y, oldCoords.z - 1.0)
-        Notify(Lang:t("error.tp_error"), 'error')
+        Notify(locale("error.tp_error"), 'error')
     end
 
     -- If Z coord was found, set coords in found coords.
     SetPedCoordsKeepVehicle(ped, x, y, groundZ)
-    Notify(Lang:t("success.teleported_waypoint"), 'success')
+    Notify(locale("success.teleported_waypoint"), 'success')
 end)
 
 -- Vehicle Commands
@@ -144,10 +144,14 @@ lib.callback.register('qbx_core:client:vehicleSpawned', function(netId, props)
     end
 end)
 
-lib.callback.register('qbx_core:client:getNearestVehicle', function()
-    local vehicle = lib.getClosestVehicle(GetEntityCoords(cache.ped), 5)
+lib.callback.register('qbx_core:client:getVehiclesInRadius', function(radius)
+    local vehicles = lib.getNearbyVehicles(GetEntityCoords(cache.ped), radius or 5, true)
 
-    return vehicle and VehToNet(vehicle)
+    for i = 1, #vehicles do
+        vehicles[i] = VehToNet(vehicles[i].vehicle)
+    end
+
+    return vehicles
 end)
 
 -- Other stuff
@@ -181,7 +185,7 @@ AddStateBagChangeHandler('me', nil, function(bagName, _, value)
         local displayTime = 5000 + GetGameTimer()
         while displayTime > GetGameTimer() do
             playerPed = isLocalPlayer and cache.ped or GetPlayerPed(playerId)
-            DrawText3D(value, GetEntityCoords(playerPed))
+            qbx.drawText3d({text = value, coords = GetEntityCoords(playerPed)})
             Wait(0)
         end
     end)

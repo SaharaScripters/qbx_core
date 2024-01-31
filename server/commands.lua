@@ -149,7 +149,7 @@ lib.addCommand('car', {
     local playerPed = GetPlayerPed(src)
     local coords = GetEntityCoords(playerPed)
     exports.ss_vspawner:spawnVehicle(src, {
-        model = args[Lang:t("command.car.params.model.name")],
+        model = args[locale("command.car.params.model.name")],
         coords = vector4(coords.x, coords.y, coords.z, GetEntityHeading(playerPed)),
         plate = plate,
         wrap = true,

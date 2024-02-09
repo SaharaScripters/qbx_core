@@ -143,33 +143,17 @@ local function getEntities(pool, ignoreList) -- luacheck: ignore
 end
 
 ---@deprecated use the GetGamePool('CVehicle') native directly
-functions.GetVehicles = function(ignoreList)
-    return getEntities('CVehicle', ignoreList)
+functions.GetVehicles = function()
+    return GetGamePool('CVehicle')
 end
 
 ---@deprecated use the GetGamePool('CObject') native directly
-functions.GetObjects = function(ignoreList)
-    return getEntities('CObject', ignoreList)
+functions.GetObjects = function()
+    return GetGamePool('CObject')
 end
 
 ---@deprecated use the GetActivePlayers native directly
-functions.GetPlayers = function(ignoreList)
-    ignoreList = ignoreList or {}
-    local plys = GetActivePlayers()
-    local players = {}
-    local ignoreMap = {}
-    for i = 1, #ignoreList do
-        ignoreMap[ignoreList[i]] = true
-    end
-
-    for i = 1, #plys do
-        local player = plys[i]
-        if not ignoreMap[player] then
-            players[#players + 1] = player
-        end
-    end
-    return players
-end
+functions.GetPlayers = GetActivePlayers
 
 ---@deprecated use the GetGamePool('CPed') native directly
 functions.GetPeds = function(ignoreList)
@@ -205,11 +189,12 @@ end
 ---@deprecated use qbx.isWearingGloves from modules/lib.lua
 functions.IsWearingGloves = qbx.isWearingGloves
 
-functions.GetClosestPlayer = function(coords, maxDistance) -- luacheck: ignore
+---@deprecated use lib.getClosestPlayer from ox_lib
+functions.GetClosestPlayer = function(coords) -- luacheck: ignore
     coords = type(coords) == 'table' and vec3(coords.x, coords.y, coords.z) or coords or GetEntityCoords(cache.ped)
-    local playerId, _, playerCoords = lib.getClosestPlayer(coords, maxDistance or 50, false)
+    local playerId, _, playerCoords = lib.getClosestPlayer(coords, 5, false)
     local closestDistance = playerCoords and #(playerCoords - coords) or nil
-    return playerId, closestDistance
+    return playerId or -1, closestDistance or -1
 end
 
 ---@deprecated use lib.getNearbyPlayers from ox_lib
@@ -226,13 +211,13 @@ functions.GetPlayersFromCoords = function(coords, radius)
 end
 
 ---@deprecated use lib.getClosestVehicle from ox_lib
-functions.GetClosestVehicle = function(coords, ignoreList)
-    return getClosestEntity(getEntities('CVehicle', ignoreList), coords)
+functions.GetClosestVehicle = function(coords)
+    return getClosestEntity(GetGamePool('CVehicle'), coords)
 end
 
 ---@deprecated use lib.getClosestObject from ox_lib
-functions.GetClosestObject = function(coords, ignoreList)
-    return getClosestEntity(getEntities('CObject', ignoreList), coords)
+functions.GetClosestObject = function(coords)
+    return getClosestEntity(GetGamePool('CObject'), coords)
 end
 
 ---@deprecated use the GetWorldPositionOfEntityBone native and calculate distance directly

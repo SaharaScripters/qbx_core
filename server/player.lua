@@ -106,6 +106,7 @@ function CheckPlayerData(source, playerData)
     playerData.metadata.hunger = playerData.metadata.hunger or 100
     playerData.metadata.thirst = playerData.metadata.thirst or 100
     playerData.metadata.stress = playerData.metadata.stress or 0
+	playerData.metadata.communityservice = playerData.metadata.communityservice or 0
     playerData.metadata.visagranted = playerData.metadata.visagranted or false
     playerData.metadata.isdead = playerData.metadata.isdead or false
     playerData.metadata.inlaststand = playerData.metadata.inlaststand or false
@@ -117,6 +118,7 @@ function CheckPlayerData(source, playerData)
     playerData.metadata.status = playerData.metadata.status or {}
     playerData.metadata.phone = playerData.metadata.phone or {}
     playerData.metadata.bloodtype = playerData.metadata.bloodtype or config.player.bloodTypes[math.random(1, #config.player.bloodTypes)]
+	playerData.metadata.dnaid = playerData.metadata.dnaid or GenerateUniqueIdentifier('DnaId')
     playerData.metadata.dealerrep = playerData.metadata.dealerrep or 0
     playerData.metadata.craftingrep = playerData.metadata.craftingrep or 0
     playerData.metadata.attachmentcraftingrep = playerData.metadata.attachmentcraftingrep or 0

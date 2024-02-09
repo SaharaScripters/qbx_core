@@ -53,6 +53,11 @@ return {
                     return math.random(11111111, 99999999)
                 end,
             },
+            DnaId = {
+                valueFunction = function()
+                    return lib.string.random('......')
+                end,
+            },			
         }
     },
 

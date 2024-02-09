@@ -255,6 +255,7 @@ function FetchIsUnique(type, value)
         FingerId = "JSON_VALUE(metadata, '$.fingerprint')",
         WalletId = "JSON_VALUE(metadata, '$.walletid')",
         SerialNumber = "JSON_VALUE(metadata, '$.phonedata.SerialNumber')",
+		DnaId = "JSON_VALUE(metadata, '$.dnaid')",
     }
 
     local count = MySQL.prepare.await('SELECT COUNT(*) as count FROM players WHERE ' .. typeToColumn[type] .. ' = ?', { value })

@@ -223,6 +223,7 @@ return {
 	},	
 	['realestate'] = {
 		label = 'ADDOHA GROUP',
+        type = 'realestate',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {

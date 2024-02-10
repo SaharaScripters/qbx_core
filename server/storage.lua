@@ -208,6 +208,7 @@ end
 function FetchPlayerEntity(citizenId)
     ---@type PlayerEntityDatabase
     local player = MySQL.prepare.await('SELECT * FROM players where citizenid = ?', { citizenId })
+    if not player then return nil end
     local charinfo = json.decode(player.charinfo)
     return player and {
         citizenid = player.citizenid,

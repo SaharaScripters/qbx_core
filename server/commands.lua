@@ -98,7 +98,7 @@ lib.addCommand('openserver', {
         Notify(source, locale('error.server_already_open'), 'error')
         return
     end
-    if HasPermission(source, 'admin') then
+    if IsPlayerAceAllowed(source, 'admin') then
         config.server.closed = false
         Notify(source, locale('success.server_opened'), 'success')
     else
@@ -117,12 +117,12 @@ lib.addCommand('closeserver', {
         Notify(source, locale('error.server_already_closed'), 'error')
         return
     end
-    if HasPermission(source, 'admin') then
+    if IsPlayerAceAllowed(source, 'admin') then
         local reason = args[locale("command.closeserver.params.reason.name")] or 'No reason specified'
         config.server.closed = true
         config.server.closedReason = reason
         for k in pairs(QBX.Players) do
-            if not HasPermission(k, config.server.whitelistPermission) then
+            if not IsPlayerAceAllowed(k --[[@as string]], config.server.whitelistPermission) then
                 DropPlayer(k, reason)
             end
         end
@@ -242,11 +242,69 @@ lib.addCommand('setjob', {
         Notify(source, locale('error.not_online'), 'error')
         return
     end
+    local jobGrade = 0
     if args[locale("command.setjob.params.grade.name")] then
-        player.Functions.SetJob(tostring(args[locale("command.setjob.params.job.name")]), tonumber(args[locale("command.setjob.params.grade.name")]) --[[@as number]])
-    else
-        player.Functions.SetJob(tostring(args[locale("command.setjob.params.job.name")]), 0)
+        jobGrade = tonumber(args[locale("command.setjob.params.grade.name")]) --[[@as number]]
     end
+    player.Functions.SetJob(tostring(args[locale("command.setjob.params.job.name")]), jobGrade)
+end)
+
+
+--- ADMIN COMMAND
+
+
+lib.addCommand('changejob', {
+    help = locale("command.changejob.help"),
+    params = {
+        { name = locale("command.changejob.params.id.name"), help = locale("command.changejob.params.id.help"), type = 'playerId' },
+        { name = locale("command.changejob.params.job.name"), help = locale("command.changejob.params.job.help"), type = 'string' },
+    },
+    restricted = 'group.admin'
+}, function(source, args)
+    local player = GetPlayer(tonumber(args[locale("command.changejob.params.id.name")]) --[[@as number]])
+    if not player then
+        Notify(source, locale('error.not_online'), 'error')
+        return
+    end
+
+    SetPlayerPrimaryJob(player.PlayerData.citizenid, tostring(args[locale("command.changejob.params.job.name")]))
+end)
+
+lib.addCommand('addjob', {
+    help = locale("command.addjob.help"),
+    params = {
+        { name = locale("command.addjob.params.id.name"), help = locale("command.addjob.params.id.help"), type = 'playerId' },
+        { name = locale("command.addjob.params.job.name"), help = locale("command.addjob.params.job.help"), type = 'string' },
+        { name = locale("command.addjob.params.grade.name"), help = locale("command.addjob.params.grade.help"), type = 'number', optional = true}
+    },
+    restricted = 'group.admin'
+}, function(source, args)
+    local player = GetPlayer(tonumber(args[locale("command.addjob.params.id.name")]) --[[@as number]])
+    if not player then
+        Notify(source, locale('error.not_online'), 'error')
+        return
+    end
+    local jobGrade = 0
+    if args[locale("command.addjob.params.grade.name")] then
+        jobGrade = tonumber(args[locale("command.addjob.params.grade.name")]) --[[@as number]]
+    end
+    AddPlayerToJob(player.PlayerData.citizenid, tostring(args[locale("command.addjob.params.job.name")]), jobGrade)
+end)
+
+lib.addCommand('removejob', {
+    help = locale("command.removejob.help"),
+    params = {
+        { name = locale("command.removejob.params.id.name"), help = locale("command.removejob.params.id.help"), type = 'playerId' },
+        { name = locale("command.removejob.params.job.name"), help = locale("command.removejob.params.job.help"), type = 'string' }
+    },
+    restricted = 'group.admin'
+}, function(source, args)
+    local player = GetPlayer(tonumber(args[locale("command.removejob.params.id.name")]) --[[@as number]])
+    if not player then
+        Notify(source, locale('error.not_online'), 'error')
+        return
+    end
+    RemovePlayerFromJob(player.PlayerData.citizenid, tostring(args[locale("command.removejob.params.job.name")]))
 end)
 
 -- Gang
@@ -301,7 +359,7 @@ lib.addCommand('ooc', {
                 multiline = true,
                 args = {('OOC | %s'):format(GetPlayerName(source)), message}
             })
-        elseif HasPermission(v --[[@as Source]], 'admin') then
+        elseif IsPlayerAceAllowed(v --[[@as string]], 'admin') then
             if IsOptin(v --[[@as Source]]) then
                 TriggerClientEvent('chat:addMessage', v --[[@as Source]], {
                     color = { 0, 0, 255},
@@ -314,7 +372,7 @@ lib.addCommand('ooc', {
                     event = 'OOC',
                     color = 'white',
                     tags = config.logging.role,
-                    message = '**' .. GetPlayerName(source) .. '** (CitizenID: ' .. player.PlayerData.citizenid .. ' | ID: ' .. source .. ') **Message:** ' .. message
+                    message = ('**%s** (CitizenID: %s | ID: %s) **Message:** %s'):format(GetPlayerName(source), player.PlayerData.citizenid, source, message)
                 })
             end
         end

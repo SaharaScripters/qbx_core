@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) NOT NULL,
+  `citizenid` varchar(50) NOT NULL COLLATE utf8mb4_unicode_ci,
   `cid` int(11) DEFAULT NULL,
   `license` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -11,12 +11,14 @@ CREATE TABLE IF NOT EXISTS `players` (
   `position` text NOT NULL,
   `metadata` text NOT NULL,
   `inventory` longtext DEFAULT NULL,
+  `phone_number` VARCHAR(20) DEFAULT NULL,
+  `last_logged_out` timestamp NULL DEFAULT NULL,
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`citizenid`),
   KEY `id` (`id`),
   KEY `last_updated` (`last_updated`),
   KEY `license` (`license`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `bans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -31,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `bans` (
   KEY `license` (`license`),
   KEY `discord` (`discord`),
   KEY `ip` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `player_contacts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -41,20 +43,13 @@ CREATE TABLE IF NOT EXISTS `player_contacts` (
   `iban` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `groups` (
-  `name` VARCHAR(50) NOT NULL,
-  `type` ENUM('job','gang') NOT NULL,
-  `data` LONGTEXT NOT NULL,
-  PRIMARY KEY (`name`, `type`)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS `group_grades` (
+CREATE TABLE IF NOT EXISTS `player_groups` (
+  `citizenid` VARCHAR(50) NOT NULL,
   `group` VARCHAR(50) NOT NULL,
-  `type` ENUM('job', 'gang') NOT NULL,
+  `type` VARCHAR(50) NOT NULL,
   `grade` TINYINT(3) UNSIGNED NOT NULL,
-  `data` LONGTEXT NOT NULL,
-  PRIMARY KEY (`group`, `grade`, `type`),
-  CONSTRAINT `groups` FOREIGN KEY (`group`) REFERENCES `groups` (`name`) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+  PRIMARY KEY (`citizenid`, `type`, `group`),
+  CONSTRAINT `fk_citizenid` FOREIGN KEY (`citizenid`) REFERENCES `players` (`citizenid`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

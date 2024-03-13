@@ -7,6 +7,8 @@ local qbCoreCompat = {}
 
 qbCoreCompat.Config = lib.table.merge(require 'config.server', require 'config.shared')
 qbCoreCompat.Shared = require 'bridge.qb.shared.main'
+qbCoreCompat.Shared.Jobs = GetJobs()
+qbCoreCompat.Shared.Gangs = GetGangs()
 qbCoreCompat.Players = QBX.Players
 qbCoreCompat.Player = require 'bridge.qb.server.player'
 qbCoreCompat.Player_Buckets = QBX.Player_Buckets
@@ -55,10 +57,10 @@ RegisterNetEvent('QBCore:CallCommand', function(command, args)
     local src = source --[[@as Source]]
     local player = GetPlayer(src)
     if not player then return end
-    if IsPlayerAceAllowed(src, string.format('command.%s', command)) then
+    if IsPlayerAceAllowed(src --[[@as string]], ('command.%s'):format(command)) then
         local commandString = command
         for _, value in pairs(args) do
-            commandString = string.format('%s %s', commandString, value)
+            commandString = ('%s %s'):format(commandString, value)
         end
         TriggerClientEvent('QBCore:Command:CallCommand', src, commandString)
     end
@@ -97,6 +99,14 @@ qbCoreCompat.Functions.CreateCallback('QBCore:Server:CreateVehicle', function(so
     local vehId = qbCoreCompat.Functions.CreateVehicle(source, model, nil, coords, warp)
 
     if vehId then cb(NetworkGetNetworkIdFromEntity(vehId)) end
+end)
+
+AddEventHandler('qbx_core:server:onJobUpdate', function(jobName, job)
+    qbCoreCompat.Shared.Jobs[jobName] = job
+end)
+
+AddEventHandler('qbx_core:server:onGangUpdate', function(gangName, gang)
+    qbCoreCompat.Shared.Gangs[gangName] = gang
 end)
 
 local createQbExport = require 'bridge.qb.shared.export-function'

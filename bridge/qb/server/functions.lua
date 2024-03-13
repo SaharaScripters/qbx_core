@@ -68,7 +68,7 @@ end
 local discordLink = GetConvar('qbx:discordlink', 'discord.gg/qbox')
 ---@deprecated use setKickReason or deferrals for connecting players, and the DropPlayer native directly otherwise
 functions.Kick = function(source, reason, setKickReason, deferrals)
-    reason = '\n' .. reason .. '\n🔸 Check our Discord for further information: ' .. discordLink
+    reason = ('\n %s \n 🔸 Check our Discord for further information: %s'):format(reason, discordLink)
     if setKickReason then
         setKickReason(reason)
     end
@@ -135,7 +135,7 @@ functions.GetPlate = qbx.getVehiclePlate
 -- Single add item
 ---@deprecated incompatible with ox_inventory. Update ox_inventory item config instead.
 local function AddItem(itemName, item)
-    lib.print.warn(string.format("%s invoked Deprecated function AddItem. This is incompatible with ox_inventory", GetInvokingResource() or 'unknown resource'))
+    lib.print.warn(('%s invoked deprecated function AddItem. This is incompatible with ox_inventory'):format(GetInvokingResource() or 'unknown resource'))
     if type(itemName) ~= "string" then
         return false, "invalid_item_name"
     end
@@ -157,7 +157,7 @@ createQbExport('AddItem', AddItem)
 -- Single update item
 ---@deprecated incompatible with ox_inventory. Update ox_inventory item config instead.
 local function UpdateItem(itemName, item)
-    lib.print.warn(string.format("%s invoked deprecated function UpdateItem. This is incompatible with ox_inventory", GetInvokingResource() or 'unknown resource'))
+    lib.print.warn(('%s invoked deprecated function UpdateItem. This is incompatible with ox_inventory'):format(GetInvokingResource() or 'unknown resource'))
     if type(itemName) ~= "string" then
         return false, "invalid_item_name"
     end
@@ -176,7 +176,7 @@ createQbExport('UpdateItem', UpdateItem)
 -- Multiple Add Items
 ---@deprecated incompatible with ox_inventory. Update ox_inventory item config instead.
 local function AddItems(items)
-    lib.print.warn(string.format("%s invoked deprecated function AddItems. This is incompatible with ox_inventory", GetInvokingResource() or 'unknown resource'))
+    lib.print.warn(('%s invoked deprecated function AddItems. This is incompatible with ox_inventory'):format(GetInvokingResource() or 'unknown resource'))
     local shouldContinue = true
     local message = "success"
     local errorItem = nil
@@ -211,7 +211,7 @@ createQbExport('AddItems', AddItems)
 -- Single Remove Item
 ---@deprecated incompatible with ox_inventory. Update ox_inventory item config instead.
 local function RemoveItem(itemName)
-    lib.print.warn(string.format("%s invoked deprecated function RemoveItem. This is incompatible with ox_inventory", GetInvokingResource() or 'unknown resource'))
+    lib.print.warn(('%s invoked deprecated function RemoveItem. This is incompatible with ox_inventory'):format(GetInvokingResource() or 'unknown resource'))
     if type(itemName) ~= "string" then
         return false, "invalid_item_name"
     end
@@ -236,24 +236,23 @@ createQbExport('RemoveItem', RemoveItem)
 ---@param job Job
 ---@return boolean success
 ---@return string message
-local function AddJob(jobName, job)
+local function addJob(jobName, job)
     if type(jobName) ~= "string" then
         return false, "invalid_job_name"
     end
 
-    if QBX.Shared.Jobs[jobName] then
+    if GetJob(jobName) then
         return false, "job_exists"
     end
 
-    QBX.Shared.Jobs[jobName] = job
-
-    TriggerClientEvent('QBCore:Client:OnSharedUpdate', -1, 'Jobs', jobName, job)
-    TriggerEvent('QBCore:Server:UpdateObject')
+    CreateJobs({[jobName] = job})
     return true, "success"
 end
 
-functions.AddJob = AddJob
-createQbExport('AddJob', AddJob)
+functions.AddJob = function(jobName, job)
+    return exports['qb-core']:AddJob(jobName, job)
+end
+createQbExport('AddJob', addJob)
 
 -- Multiple Add Jobs
 ---@deprecated call export CreateJobs
@@ -261,27 +260,25 @@ createQbExport('AddJob', AddJob)
 ---@return boolean success
 ---@return string message
 ---@return Job? errorJob job causing the error message. Only present if success is false.
-local function AddJobs(jobs)
-
-    for key, value in pairs(jobs) do
+local function addJobs(jobs)
+    for key in pairs(jobs) do
         if type(key) ~= "string" then
             return false, 'invalid_job_name', jobs[key]
         end
 
-        if QBX.Shared.Jobs[key] then
+        if GetJob(key) then
             return false, 'job_exists', jobs[key]
         end
-
-        QBX.Shared.Jobs[key] = value
     end
 
-    TriggerClientEvent('QBCore:Client:OnSharedUpdateMultiple', -1, 'Jobs', jobs)
-    TriggerEvent('QBCore:Server:UpdateObject')
+    CreateJobs(jobs)
     return true, 'success'
 end
 
-functions.AddJobs = AddJobs
-createQbExport('AddJobs', AddJobs)
+functions.AddJobs = function(jobs)
+    return exports['qb-core']:AddJobs(jobs)
+end
+createQbExport('AddJobs', addJobs)
 
 -- Single Update Job
 ---@deprecated call CreateJobs
@@ -289,24 +286,23 @@ createQbExport('AddJobs', AddJobs)
 ---@param job Job
 ---@return boolean success
 ---@return string message
-local function UpdateJob(jobName, job)
+local function updateJob(jobName, job)
     if type(jobName) ~= "string" then
         return false, "invalid_job_name"
     end
 
-    if not QBX.Shared.Jobs[jobName] then
+    if not GetJob(jobName) then
         return false, "job_not_exists"
     end
 
-    QBX.Shared.Jobs[jobName] = job
-
-    TriggerClientEvent('QBCore:Client:OnSharedUpdate', -1, 'Jobs', jobName, job)
-    TriggerEvent('QBCore:Server:UpdateObject')
+    CreateJobs({[jobName] = job})
     return true, "success"
 end
 
-functions.UpdateJob = UpdateJob
-createQbExport('UpdateJob', UpdateJob)
+functions.UpdateJob = function(jobName, job)
+    return exports['qb-core']:UpdateJob(jobName, job)
+end
+createQbExport('UpdateJob', updateJob)
 
 -- Single Add Gang
 ---@deprecated call export CreateGangs
@@ -314,24 +310,23 @@ createQbExport('UpdateJob', UpdateJob)
 ---@param gang Gang
 ---@return boolean success
 ---@return string message
-local function AddGang(gangName, gang)
+local function addGang(gangName, gang)
     if type(gangName) ~= "string" then
         return false, "invalid_gang_name"
     end
 
-    if QBX.Shared.Gangs[gangName] then
+    if GetGang(gangName) then
         return false, "gang_exists"
     end
 
-    QBX.Shared.Gangs[gangName] = gang
-
-    TriggerClientEvent('QBCore:Client:OnSharedUpdate', -1, 'Gangs', gangName, gang)
-    TriggerEvent('QBCore:Server:UpdateObject')
+    CreateGangs({[gangName] = gang})
     return true, "success"
 end
 
-functions.AddGang = AddGang
-createQbExport('AddGang', AddGang)
+functions.AddGang = function(gangName, gang)
+    return exports['qb-core']:AddGang(gangName, gang)
+end
+createQbExport('AddGang', addGang)
 
 -- Single Update Gang
 ---@deprecated call export CreateGangs
@@ -339,24 +334,23 @@ createQbExport('AddGang', AddGang)
 ---@param gang Gang
 ---@return boolean success
 ---@return string message
-local function UpdateGang(gangName, gang)
+local function updateGang(gangName, gang)
     if type(gangName) ~= "string" then
         return false, "invalid_gang_name"
     end
 
-    if not QBX.Shared.Gangs[gangName] then
+    if not GetGang(gangName) then
         return false, "gang_not_exists"
     end
 
-    QBX.Shared.Gangs[gangName] = gang
-
-    TriggerClientEvent('QBCore:Client:OnSharedUpdate', -1, 'Gangs', gangName, gang)
-    TriggerEvent('QBCore:Server:UpdateObject')
+    CreateGangs({[gangName] = gang})
     return true, "success"
 end
 
-functions.UpdateGang = UpdateGang
-createQbExport('UpdateGang', UpdateGang)
+functions.UpdateGang = function(gangName, gang)
+    return exports['qb-core']:UpdateGang(gangName, gang)
+end
+createQbExport('UpdateGang', updateGang)
 
 -- Multiple Add Gangs
 ---@deprecated call export CreateGangs
@@ -364,31 +358,34 @@ createQbExport('UpdateGang', UpdateGang)
 ---@return boolean success
 ---@return string message
 ---@return Gang? errorGang present if success is false. Gang that caused the error message.
-local function AddGangs(gangs)
-    for key, value in pairs(gangs) do
+local function addGangs(gangs)
+    for key in pairs(gangs) do
         if type(key) ~= "string" then
             return false, 'invalid_gang_name', gangs[key]
         end
 
-        if QBX.Shared.Gangs[key] then
+        if GetGang(key) then
             return false, 'gang_exists', gangs[key]
         end
-
-        QBX.Shared.Gangs[key] = value
     end
 
-    TriggerClientEvent('QBCore:Client:OnSharedUpdateMultiple', -1, 'Gangs', gangs)
-    TriggerEvent('QBCore:Server:UpdateObject')
+    CreateGangs(gangs)
     return true, 'success'
 end
 
-functions.AddGangs = AddGangs
-createQbExport('AddGangs', AddGangs)
+functions.AddGangs = function(gangs)
+    return exports['qb-core']:AddGangs(gangs)
+end
+createQbExport('AddGangs', addGangs)
 
-functions.RemoveJob = RemoveJob
+functions.RemoveJob = function(jobName)
+    return exports.qbx_core:RemoveJob(jobName)
+end
 createQbExport('RemoveJob', RemoveJob)
 
-functions.RemoveGang = RemoveGang
+functions.RemoveGang = function(gangName)
+    return exports.qbx_core:RemoveGang(gangName)
+end
 createQbExport('RemoveGang', RemoveGang)
 
 ---Add a new function to the Functions table of the player class

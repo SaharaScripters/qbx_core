@@ -61,14 +61,12 @@ return {
         }
     },
 
-
     ---@alias TableName string
     ---@alias ColumnName string
     ---@type table<TableName, ColumnName>
     characterDataTables = {
         players = 'citizenid',
         apartments = 'citizenid',
-        bank_accounts_new = 'id',
         crypto_transactions = 'citizenid',
         phone_invoices = 'citizenid',
         phone_messages = 'citizenid',
@@ -79,7 +77,6 @@ return {
         player_outfits = 'citizenid',
         player_vehicles = 'citizenid',
     }, -- Rows to be deleted when the character is deleted
-
 
     server = {
         pvp = true, -- Enable or disable pvp on the server (Ability to shoot other players)

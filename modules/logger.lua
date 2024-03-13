@@ -51,8 +51,8 @@ local allowedErr = {
 ---@param payload DiscordLog Queue
 local function logPayload(payload)
     local tags
-    local username = 'QBX Logs'
-    local avatarUrl = 'https://qbox-project.github.io/qbox-duck.png'
+    local username = payload.username or 'Maroc RolePlay'
+    local avatarUrl = payload.avatarurl or 'https://cdn.discordapp.com/attachments/911806162213687357/1070146115107827752/MarocRolePlaylogo.png'
     
     if payload.tags then
         for i = 1, #payload.tags do
@@ -105,7 +105,7 @@ end
 ---Creates a discord log
 ---@param log Log
 local function discordLog(log)
-    local embedData = {
+    local embedData = log.embed or {
         {
             title = log.event,
             color = Colors[log.color] or Colors.default,
@@ -122,7 +122,9 @@ local function discordLog(log)
     logQueue[#logQueue + 1] = {
         webhook = log.webhook,
         tags = log.tags,
-        embed = embedData
+        embed = embedData,
+		avatarurl = log.avatarurl,
+		username = log.username
     }
 
     if not isProcessingQueue then

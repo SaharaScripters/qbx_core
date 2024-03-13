@@ -45,26 +45,26 @@ return {
     discord = {
         enabled = true, -- This will enable or disable the built in discord rich presence.
 
-        appId = '', -- This is the Application ID (Replace this with you own)
+        appId = '828335264933216256', -- This is the Application ID (Replace this with you own)
 
         largeIcon = { -- To set this up, visit https://forum.cfx.re/t/how-to-updated-discord-rich-presence-custom-image/157686
-            icon = 'logo_name', -- Here you will have to put the image name for the 'large' icon.
-            text = 'This is a large icon with text', -- Here you can add hover text for the 'large' icon.
+            icon = 'image1', -- Here you will have to put the image name for the 'large' icon.
+            text = 'Maroc RolePlay Server', -- Here you can add hover text for the 'large' icon.
         },
 
         smallIcon = {
-            icon = 'logo_name', -- Here you will have to put the image name for the 'small' icon.
-            text = 'This is a small icon with text', -- Here you can add hover text for the 'small' icon.
+            icon = 'verified', -- Here you will have to put the image name for the 'small' icon.
+            text = 'Verified', -- Here you can add hover text for the 'small' icon.
         },
 
         firstButton = {
-            text = 'First Button!',
-            link = 'fivem://connect/localhost:30120',
+            text = 'Discord',
+            link = 'https://discord.marocroleplay.com',
         },
 
         secondButton = {
-            text = 'Second Button!',
-            link = 'fivem://connect/localhost:30120',
+            text = 'Connect',
+            link = 'fivem://connect/fivem.marocroleplay.com',
         }
     },
 

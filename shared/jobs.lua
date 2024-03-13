@@ -41,11 +41,11 @@ return {
                 payment = 50
             },
 			[1] = {
-                name = 'BRIGADIER',
+                name = 'INSPECTEUR',
                 payment = 75
             },
 			[2] = {
-                name = 'BRIGADIER CHEF',
+                name = 'INSPECTEUR PRINCIPAL',
                 payment = 75
             },			
 			[3] = {
@@ -61,15 +61,15 @@ return {
                 payment = 125
             },
 			[6] = {
-                name = 'COMMANDANT PRINCIPAL',
-                payment = 150
-            },
-			[7] = {
                 name = 'COMMANDANT DIVISIONNAIRE',
                 payment = 150
             },
-			[8] = {
+			[7] = {
                 name = 'COMMISSAIRE',
+                payment = 150
+            },
+			[8] = {
+                name = 'COMMISSAIRE DIVISIONNAIRE',
                 payment = 150
             },			
 			[9] = {

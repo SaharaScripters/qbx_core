@@ -1,29 +1,29 @@
 local config = require 'config.server'
 
-local function removeHungerAndThirst(src, player)
-    local newHunger = player.PlayerData.metadata.hunger - config.player.hungerRate
-    local newThirst = player.PlayerData.metadata.thirst - config.player.thirstRate
-    if newHunger <= 0 then
-        newHunger = 0
-    end
-    if newThirst <= 0 then
-        newThirst = 0
-    end
-    player.Functions.SetMetaData('thirst', newThirst)
-    player.Functions.SetMetaData('hunger', newHunger)
-    TriggerClientEvent('hud:client:UpdateNeeds', src, newHunger, newThirst)
-    player.Functions.Save()
-end
+-- local function removeHungerAndThirst(src, player)
+--     local newHunger = player.PlayerData.metadata.hunger - config.player.hungerRate
+--     local newThirst = player.PlayerData.metadata.thirst - config.player.thirstRate
+--     if newHunger <= 0 then
+--         newHunger = 0
+--     end
+--     if newThirst <= 0 then
+--         newThirst = 0
+--     end
+--     player.Functions.SetMetaData('thirst', newThirst)
+--     player.Functions.SetMetaData('hunger', newHunger)
+--     TriggerClientEvent('hud:client:UpdateNeeds', src, newHunger, newThirst)
+--     player.Functions.Save()
+-- end
 
-CreateThread(function()
-    local interval = 60000 * config.updateInterval
-    while true do
-        Wait(interval)
-        for src, player in pairs(QBX.Players) do
-            removeHungerAndThirst(src, player)
-        end
-    end
-end)
+-- CreateThread(function()
+--     local interval = 60000 * config.updateInterval
+--     while true do
+--         Wait(interval)
+--         for src, player in pairs(QBX.Players) do
+--             removeHungerAndThirst(src, player)
+--         end
+--     end
+-- end)
 
 local function sendPaycheck(player, payment)
     player.Functions.AddMoney('bank', payment, 'paycheck')

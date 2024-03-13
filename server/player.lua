@@ -138,7 +138,7 @@ function CheckPlayerData(source, playerData)
     playerData.metadata.licences = playerData.metadata.licences or {
         id = false, -- ID Card
         weapon = false, -- Weapon
-		hunting = false, -- Hunting		
+		hunting = false, -- Hunting
         driverT = false, -- Theory Car/Truck/Bus/Motor
 		driverTh = false, -- Theory Heli
 		driverTp = false, -- Theory Plane
@@ -146,8 +146,8 @@ function CheckPlayerData(source, playerData)
         driverB = false, -- Car
         driverC = false, -- Truck
 		driverW = false, -- Boat
-        driverH = false, -- Heli		
-        driverP = false, -- Plane		
+        driverH = false, -- Heli
+        driverP = false, -- Plane
     }
     playerData.metadata.inside = playerData.metadata.inside or {
         house = nil,
@@ -333,10 +333,6 @@ function CreatePlayer(playerData, Offline)
     ---@param val any
     function self.Functions.SetMetaData(meta, val)
         if not meta or type(meta) ~= 'string' then return end
-        if meta == 'hunger' or meta == 'thirst' then
-            val = val > 100 and 100 or val
-        end
-
         local oldVal = self.PlayerData.metadata[meta]
         self.PlayerData.metadata[meta] = val
         self.Functions.UpdatePlayerData()
@@ -358,6 +354,9 @@ function CreatePlayer(playerData, Offline)
     function self.Functions.AddJobReputation(amount)
         if not amount then return end
         amount = tonumber(amount) --[[@as number]]
+        if not self.PlayerData.metadata.jobrep[self.PlayerData.job.name] then
+            self.PlayerData.metadata.jobrep[self.PlayerData.job.name] = 0
+        end
         self.PlayerData.metadata.jobrep[self.PlayerData.job.name] = self.PlayerData.metadata.jobrep[self.PlayerData.job.name] + amount
         self.Functions.UpdatePlayerData()
     end

@@ -260,8 +260,8 @@ local function fetchIsUnique(type, value)
         FingerId = "JSON_VALUE(metadata, '$.fingerprint')",
         WalletId = "JSON_VALUE(metadata, '$.walletid')",
         SerialNumber = "JSON_VALUE(metadata, '$.phonedata.SerialNumber')",
+        DnaId = "JSON_VALUE(metadata, '$.dnaid')",
     }
-
     local result = MySQL.single.await('SELECT COUNT(*) as count FROM players WHERE ' .. typeToColumn[type] .. ' = ?', { value })
     return result.count == 0
 end

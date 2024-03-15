@@ -1,10 +1,10 @@
 ---@type table<string, Gang>
 return {
 	['none'] = {
-		label = 'NO GANG',
+		label = 'UNAFFILIATED',
 		grades = {
             [0] = {
-                name = 'Unaffiliated'
+                name = 'INDIVIDUAL'
             },
         },
 	},
@@ -12,18 +12,24 @@ return {
 		label = 'BLACK',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },			
+			[5] = {
+                name = 'BOSS',
                 isboss = true,
-                bankAuth = true
             },
         },
 	},
@@ -31,18 +37,24 @@ return {
 		label = 'MAFIA 1',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },			
+			[5] = {
+                name = 'BOSS',
                 isboss = true,
-                bankAuth = true
             },
         },
 	},
@@ -50,18 +62,24 @@ return {
 		label = 'MAFIA 2',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },			
+			[5] = {
+                name = 'BOSS',
                 isboss = true,
-                bankAuth = true
             },
         },
 	},
@@ -69,18 +87,24 @@ return {
 		label = 'GANG 1',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },			
+			[5] = {
+                name = 'BOSS',
                 isboss = true,
-                bankAuth = true
             },
         },
 	},
@@ -88,18 +112,24 @@ return {
 		label = 'GANG 2',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },			
+			[5] = {
+                name = 'BOSS',
                 isboss = true,
-                bankAuth = true
             },
         },
 	},
@@ -107,18 +137,24 @@ return {
 		label = 'GANG 3',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },			
+			[5] = {
+                name = 'BOSS',
                 isboss = true,
-                bankAuth = true
             },
         },
 	},
@@ -126,18 +162,24 @@ return {
 		label = 'GANG 4',
 		grades = {
             [0] = {
-                name = 'Recruit'
+                name = 'ASSOCIATE'
             },
 			[1] = {
-                name = 'Enforcer'
+                name = 'ENFORCER'
             },
 			[2] = {
-                name = 'Shot Caller'
+                name = 'CAPOREGIME'
             },
 			[3] = {
-                name = 'Boss',
-                isboss = true,
-                bankAuth = true
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },
+			[5] = {
+                name = 'BOSS',
+                isboss = true
             },
         },
 	}	

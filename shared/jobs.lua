@@ -230,8 +230,7 @@ return {
             },
 			[2] = {
                 name = 'OWNER',
-				isboss = true,
-				bankAuth = true,				
+				isboss = true,				
                 payment = 150
             },
         },

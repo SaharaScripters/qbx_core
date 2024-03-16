@@ -165,6 +165,7 @@ local function spawnDefault() -- We use a callback to make the server wait on th
     end
 
     destroyPreviewCam()
+    local result = lib.callback.await('qbx_core:server:enteredGame', false)
 
     pcall(function() exports.spawnmanager:spawnPlayer({
         x = defaultSpawn.x,
@@ -192,6 +193,7 @@ local function spawnLastLocation()
     end
 
     destroyPreviewCam()
+    local result = lib.callback.await('qbx_core:server:enteredGame', false)
 
     pcall(function() exports.spawnmanager:spawnPlayer({
         x = QBX.PlayerData.position.x,
@@ -251,6 +253,7 @@ local function createCharacter(cid)
     end
 
     destroyPreviewCam()
+    local result = lib.callback.await('qbx_core:server:enteredGame', false)
     return true
 end
 
@@ -332,6 +335,7 @@ local function chooseCharacter()
                                 spawnLastLocation()
                             end
                             destroyPreviewCam()
+                            local result = lib.callback.await('qbx_core:server:enteredGame', false)
                         end
                     },
                     config.characters.enableDeleteButton and {
@@ -398,6 +402,7 @@ CreateThread(function()
     while true do
         Wait(0)
         if NetworkIsSessionStarted() then
+            local result = lib.callback.await('qbx_core:server:enteringGame', false)
             pcall(function() exports.spawnmanager:setAutoSpawn(false) end)
             Wait(250)
             lib.requestModel(model, config.loadingModelsTimeout)

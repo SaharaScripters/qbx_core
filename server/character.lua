@@ -86,3 +86,11 @@ RegisterNetEvent('qbx_core:server:deleteCharacter', function(citizenId)
     DeleteCharacter(src --[[@as number]], citizenId)
     Notify(src, locale('success.character_deleted'), 'success')
 end)
+
+lib.callback.register('qbx_core:server:enteringGame', function(source)
+    SetPlayerBucket(source, source)
+end)
+
+lib.callback.register('qbx_core:server:enteredGame', function(source)
+    SetPlayerBucket(source, 0)
+end)

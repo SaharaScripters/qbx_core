@@ -372,6 +372,9 @@ local function chooseCharacter()
 
     SetTimecycleModifier('default')
     lib.showContext('qbx_core_multichar_characters')
+    if amount > 0 then
+        previewPed(characters[1].citizenid)
+    end
 end
 
 RegisterNetEvent('qbx_core:client:spawnNoApartments', function() -- This event is only for no starting apartments

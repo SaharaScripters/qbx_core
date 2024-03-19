@@ -383,10 +383,13 @@ function CheckPlayerData(source, playerData)
         date = nil
     }
     playerData.metadata.licences = playerData.metadata.licences or {
-        id = false, -- ID Card
+        idcard = false, -- ID Card
         weapon = false, -- Weapon
 		hunting = false, -- Hunting
-        driverT = false, -- Theory Car/Truck/Bus/Motor
+        driverTa = false, -- Theory Motor
+        driverTb = false, -- Theory Car
+        driverTc = false, -- Theory Truck
+		driverTw = false, -- Theory Boat
 		driverTh = false, -- Theory Heli
 		driverTp = false, -- Theory Plane
         driverA = false, -- Motorcycle

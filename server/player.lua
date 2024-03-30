@@ -393,11 +393,17 @@ function CheckPlayerData(source, playerData)
 		driverTh = false, -- Theory Heli
 		driverTp = false, -- Theory Plane
         driverA = false, -- Motorcycle
+        driverAr = false, -- Motorcycle	Revoked	
         driverB = false, -- Car
+        driverBr = false, -- Car Revoked		
         driverC = false, -- Truck
+        driverCr = false, -- Truck Revoked
 		driverW = false, -- Boat
+		driverWr = false, -- Boat Revoked
         driverH = false, -- Heli
+        driverHr = false, -- Heli Revoked
         driverP = false, -- Plane
+        driverPr = false, -- Plane Revoked
     }
     playerData.metadata.inside = playerData.metadata.inside or {
         house = nil,

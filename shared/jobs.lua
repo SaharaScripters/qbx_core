@@ -128,7 +128,7 @@ return {
         },
 	},
 	['ambulance'] = {
-		label = 'CENTRE HOSPITALIER UNIVERSITAIRE',		
+		label = 'CHU',		
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -178,6 +178,46 @@ return {
         },
 	},	
 	-- Businesses
+    ['medinaburger'] = {
+        label = 'MEDINA BURGER',
+        defaultDuty = false,
+        offDutyPay = false,
+        grades = {
+            [0] = {
+                name = 'REPRESENTATIVE',
+                payment = 50
+            },
+            [1] = {
+                name = 'MANAGER',
+                payment = 75
+            },
+            [2] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+    },
+    ['blackpan'] = {
+        label = 'BLACK PAN',
+        defaultDuty = false,
+        offDutyPay = false,
+        grades = {
+            [0] = {
+                name = 'REPRESENTATIVE',
+                payment = 50
+            },
+            [1] = {
+                name = 'MANAGER',
+                payment = 75
+            },
+            [2] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+    },	
 	['lawyer'] = {
 		label = 'LAW OFFICE',
 		defaultDuty = true,
@@ -213,27 +253,6 @@ return {
                 payment = 150
             },
         },
-	},	
-	['realestate'] = {
-		label = 'ADDOHA GROUP',
-        type = 'realestate',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-            [0] = {
-                name = 'REPRESENTATIVE',
-                payment = 50
-            },
-			[1] = {
-                name = 'MANAGER',
-                payment = 75
-            },
-			[2] = {
-                name = 'OWNER',
-				isboss = true,				
-                payment = 150
-            },
-        },
 	},
 	['taxi'] = {
 		label = 'TAXIS MOROCCO',
@@ -255,6 +274,26 @@ return {
             },
         },
 	},
+	['amazon'] = {
+		label = 'AMAZON',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'DRIVER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+                payment = 75
+            },
+			[2] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+	},	
 	['cardealer1'] = {
 		label = 'CAR DEALER 1',
 		defaultDuty = true,

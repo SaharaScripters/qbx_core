@@ -74,11 +74,6 @@ return {
                 name = 'PREFET DE POLICE',
 				isboss = true,
                 payment = 15000
-            },
-			[11] = {
-                name = 'MINISTRE DE L`INTERIEUR',
-				isboss = true,
-                payment = 0
             },			
         },
 	},	
@@ -153,11 +148,6 @@ return {
                 name = 'DIRECTEUR D`HOPITAL',
 				isboss = true,
                 payment = 150
-            },
-			[5] = {
-                name = 'MINISTRE DE LA SANTE',
-				isboss = true,
-                payment = 150
             },			
         },
 	},
@@ -175,6 +165,87 @@ return {
 				isboss = true,
                 payment = 150
             },			
+        },
+	},
+	-- Public Job
+	['taxi'] = {
+		label = 'TAXIS MOROCCO',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'DRIVER',
+                payment = 50
+            },
+			[1] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+	},
+	['courier'] = {
+		label = 'AMAZON',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'COURIER',
+                payment = 50
+            },
+			[1] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+	},
+	['fueler'] = {
+		label = 'SHELL',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'FUELER',
+                payment = 50
+            },
+			[1] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+	},	
+	['butcher'] = {
+		label = 'KOUTOUBIA',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'BUTCHER',
+                payment = 50
+            },
+			[1] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+	},	
+	['electrician'] = {
+		label = 'ONEE',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'ELECTRICIAN',
+                payment = 50
+            },
+			[1] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
         },
 	},	
 	-- Businesses
@@ -217,12 +288,59 @@ return {
                 payment = 150
             },
         },
-    },	
+    },
+	['farmer'] = {
+		label = 'AGRI MAROC',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'FARMER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+				isboss = true,				
+                payment = 125
+            },			
+			[2] = {
+                name = 'DIRECTOR',
+				isboss = true,					
+                payment = 150
+            },
+        },
+	},
+	['miner'] = {
+		label = 'MANAGEM',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'MINER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+				isboss = true,				
+                payment = 125
+            },			
+			[2] = {
+                name = 'DIRECTOR',
+				isboss = true,					
+                payment = 150
+            },
+        },
+	},	
 	['lawyer'] = {
 		label = 'LAW OFFICE',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
+            [1] = {
+                name = 'AVOCAT TRAINEE',
+				isboss = true,				
+                payment = 50
+            },		
             [0] = {
                 name = 'AVOCAT',
                 payment = 50
@@ -250,46 +368,6 @@ return {
 			[2] = {
                 name = 'OWNER',
 				isboss = true,				
-                payment = 150
-            },
-        },
-	},
-	['taxi'] = {
-		label = 'TAXIS MOROCCO',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-            [0] = {
-                name = 'DRIVER',
-                payment = 50
-            },
-			[1] = {
-                name = 'MANAGER',
-                payment = 75
-            },
-			[2] = {
-                name = 'OWNER',
-                isboss = true,
-                payment = 150
-            },
-        },
-	},
-	['amazon'] = {
-		label = 'AMAZON',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-            [0] = {
-                name = 'DRIVER',
-                payment = 50
-            },
-			[1] = {
-                name = 'MANAGER',
-                payment = 75
-            },
-			[2] = {
-                name = 'OWNER',
-                isboss = true,
                 payment = 150
             },
         },

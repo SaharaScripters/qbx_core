@@ -52,7 +52,6 @@ lib.callback.register('qbx_core:server:loadCharacter', function(source, citizenI
     local success = Login(source, citizenId)
     if not success then return end
 
-    SetPlayerRoutingBucket(source, 0)
     logger.log({
         source = 'qbx_core',
         webhook = config.logging.webhook['joinleave'],
@@ -73,9 +72,6 @@ lib.callback.register('qbx_core:server:createCharacter', function(source, data)
     if not success then return end
 
     giveStarterItems(source)
-    if GetResourceState('qbx_spawn') == 'missing' then
-        SetPlayerRoutingBucket(source, 0)
-    end
 
     lib.print.info(('%s has created a character'):format(GetPlayerName(source)))
     return newData

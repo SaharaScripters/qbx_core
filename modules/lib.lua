@@ -211,6 +211,7 @@ if isServer then
     ---@field spawnSource integer | vector3 | vector4 ped id or coords
     ---@field warp? boolean | integer a ped id to warp inside the vehicle, or additionally a boolean if `spawnSource` is a ped
     ---@field props? table https://overextended.dev/ox_lib/Modules/VehicleProperties/Client#vehicle-properties
+    ---@field bucket? integer routing bucket to move spawned entity to.
 
     ---Creates a vehicle on the server-side and returns its `netId`.
     ---
@@ -235,6 +236,7 @@ if isServer then
         local warp = params.warp
         local ped = type(warp) == 'number' and warp or (sourceType == 'number' and warp and source or nil)
         local props = params.props
+        local bucket = params.bucket
 
         ---@type vector4
         local coords
@@ -247,7 +249,7 @@ if isServer then
             coords = vec4(pedCoords.x, pedCoords.y, pedCoords.z, GetEntityHeading(source))
         end
 
-        local tempVehicle = CreateVehicle(model, 0, 0, 0, 0, true, true)
+        local tempVehicle = CreateVehicle(model, 0, 0, -200, 0, true, true)
         while not DoesEntityExist(tempVehicle) do Wait(0) end
 
         local vehicleType = GetVehicleType(tempVehicle)
@@ -257,12 +259,23 @@ if isServer then
         while not DoesEntityExist(veh) do Wait(0) end
         while GetVehicleNumberPlateText(veh) == '' do Wait(0) end
 
+        local state = Entity(veh).state
+        state:set('initVehicle', true, true)
+        state:set('setVehicleProperties', props, true)
+
+        lib.waitFor(function()
+            if state.setVehicleProperties then return false end
+            return true
+        end, 'Failed to set vehicle properties', 5000)
+
         if ped then
             SetPedIntoVehicle(ped, veh, -1)
+            bucket = GetEntityRoutingBucket(ped) or nil
         end
 
-        Entity(veh).state:set('initVehicle', true, true)
-        Entity(veh).state:set('setVehicleProperties', props, true)
+        if bucket and bucket > 0 then
+            SetEntityBucket(veh, bucket)
+        end
         local netId = NetworkGetNetworkIdFromEntity(veh)
 
         return netId, veh
@@ -292,7 +305,7 @@ else
 
         SetTextScale(scale, scale)
         SetTextFont(font)
-        SetTextColour(color.r, color.g, color.b, color.a)
+        SetTextColour(math.floor(color.r), math.floor(color.g), math.floor(color.b), math.floor(color.a))
         SetTextDropShadow()
         SetTextOutline()
         SetTextCentre(true)
@@ -316,7 +329,7 @@ else
 
         SetTextScale(scale, scale)
         SetTextFont(font)
-        SetTextColour(color.r, color.g, color.b, color.a)
+        SetTextColour(math.floor(color.r), math.floor(color.g), math.floor(color.b), math.floor(color.a))
         SetTextCentre(true)
         BeginTextCommandDisplayText('STRING')
         AddTextComponentSubstringPlayerName(text)
@@ -387,6 +400,23 @@ else
     ---@return string
     function qbx.getVehicleMakeName(vehicle)
         return GetLabelText(GetMakeNameFromVehicleModel(GetEntityModel(vehicle)))
+    end
+
+    ---Returns the mod type name of the given vehicle.
+    ---@param vehicle integer
+    ---@param modType integer
+    ---@param modIndex integer
+    ---@return string
+    function qbx.getVehicleModName(vehicle, modType, modIndex)
+        return GetLabelText(GetModTextLabel(vehicle, modType, modIndex))
+    end
+
+    ---Returns the livery name of the given vehicle.
+    ---@param vehicle integer
+    ---@param liveryIndex integer
+    ---@return string
+    function qbx.getVehicleLiveryName(vehicle, liveryIndex)
+        return GetLabelText(GetLiveryName(vehicle, liveryIndex))
     end
 
     ---Returns the street name and cross section name at the given coords.

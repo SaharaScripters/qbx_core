@@ -65,15 +65,7 @@ return {
     ---@alias ColumnName string
     ---@type [TableName, ColumnName][]
     characterDataTables = {
-        {'properties', 'owner'},
-        {'apartments', 'citizenid'},
-        {'bank_accounts_new', 'id'},
-        {'crypto_transactions', 'citizenid'},
-        {'phone_invoices', 'citizenid'},
-        {'phone_messages', 'citizenid'},
         {'playerskins', 'citizenid'},
-        {'player_contacts', 'citizenid'},
-        {'player_houses', 'citizenid'},
         {'player_mails', 'citizenid'},
         {'player_outfits', 'citizenid'},
         {'player_vehicles', 'citizenid'},

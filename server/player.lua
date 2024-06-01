@@ -386,6 +386,7 @@ function CheckPlayerData(source, playerData)
         idcard = false, -- ID Card
         weapon = false, -- Weapon
 		hunting = false, -- Hunting
+		fishing = false, -- Fishing
         driverTa = false, -- Theory Motor
         driverTb = false, -- Theory Car
         driverTc = false, -- Theory Truck

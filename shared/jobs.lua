@@ -249,8 +249,9 @@ return {
         },
 	},	
 	-- Businesses
+	-- Restaurants
     ['medinaburger'] = {
-        label = 'MEDINA BURGER',
+        label = 'RESTAURANT MEDINA BURGER',
         defaultDuty = false,
         offDutyPay = false,
         grades = {
@@ -270,7 +271,7 @@ return {
         },
     },
     ['blackpan'] = {
-        label = 'BLACK PAN',
+        label = 'RESTAURANT BLACK PAN',
         defaultDuty = false,
         offDutyPay = false,
         grades = {
@@ -289,6 +290,133 @@ return {
             },
         },
     },
+	-- Cafes
+    ['carrion'] = {
+        label = 'CAFE CARRION',
+        defaultDuty = false,
+        offDutyPay = false,
+        grades = {
+            [0] = {
+                name = 'BARISTA',
+                payment = 50
+            },
+            [1] = {
+                name = 'MANAGER',
+                payment = 75
+            },
+            [2] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+    },
+    ['arriba'] = {
+        label = 'CAFE ARRIBA',
+        defaultDuty = false,
+        offDutyPay = false,
+        grades = {
+            [0] = {
+                name = 'BARISTA',
+                payment = 50
+            },
+            [1] = {
+                name = 'MANAGER',
+                payment = 75
+            },
+            [2] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+    },
+	-- Night Clubs	
+	['unicorn'] = {
+		label = 'CLUB UNICORN',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'WAITER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+				isboss = true,				
+                payment = 125
+            },			
+			[2] = {
+                name = 'OWNER',
+				isboss = true,					
+                payment = 150
+            },
+        },
+	},
+	['ibiza'] = {
+		label = 'CLUB IBIZA',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'WAITER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+				isboss = true,				
+                payment = 125
+            },			
+			[2] = {
+                name = 'OWNER',
+				isboss = true,					
+                payment = 150
+            },
+        },
+	},
+	['club77'] = {
+		label = 'CLUB 77',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'WAITER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+				isboss = true,				
+                payment = 125
+            },			
+			[2] = {
+                name = 'OWNER',
+				isboss = true,					
+                payment = 150
+            },
+        },
+	},
+	['vazou'] = {
+		label = 'CLUB VAZOU',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'WAITER',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+				isboss = true,				
+                payment = 125
+            },			
+			[2] = {
+                name = 'OWNER',
+				isboss = true,					
+                payment = 150
+            },
+        },
+	},	
+	-- States Companies	
 	['farmer'] = {
 		label = 'AGRI MAROC',
 		defaultDuty = true,
@@ -330,7 +458,7 @@ return {
                 payment = 150
             },
         },
-	},	
+	},
 	['lawyer'] = {
 		label = 'LAW OFFICE',
 		defaultDuty = true,
@@ -412,8 +540,8 @@ return {
             },
         },
 	},
-	['cardealer3'] = {
-		label = 'CAR DEALER 3',
+	['motordealer1'] = {
+		label = 'MOTORS DEALER 1',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -432,8 +560,8 @@ return {
             },
         },
 	},
-	['motordealer1'] = {
-		label = 'MOTORS DEALER',
+	['motordealer2'] = {
+		label = 'MOTORS DEALER 2',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -473,7 +601,7 @@ return {
         },
 	},
 	['mechanic1'] = {
-		label = 'MECHANIC 1',
+		label = 'MECHANIC SHOP 1',
         type = 'mechanic',
 		defaultDuty = true,
 		offDutyPay = false,
@@ -494,7 +622,7 @@ return {
         },
 	},
 	['mechanic2'] = {
-		label = 'MECHANIC 2',
+		label = 'MECHANIC SHOP 2',
         type = 'mechanic',
 		defaultDuty = true,
 		offDutyPay = false,
@@ -515,28 +643,7 @@ return {
         },
 	},
 	['mechanic3'] = {
-		label = 'MECHANIC 3',
-        type = 'mechanic',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-            [0] = {
-                name = 'MECHANIC',
-                payment = 50
-            },
-			[1] = {
-                name = 'MANAGER',
-                payment = 75
-            },
-			[2] = {
-                name = 'OWNER',
-                isboss = true,
-                payment = 150
-            },
-        },
-	},
-	['mechanic4'] = {
-		label = 'MECHANIC 4',
+		label = 'MECHANIC SHOP 3',
         type = 'mechanic',
 		defaultDuty = true,
 		offDutyPay = false,

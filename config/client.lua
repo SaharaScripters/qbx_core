@@ -259,12 +259,12 @@ return {
 
         firstButton = {
             text = 'Discord',
-            link = 'https://discord.marocroleplay.com',
+            link = 'https://discord.gg/7F5nXV8P7k',
         },
 
         secondButton = {
             text = 'Connect',
-            link = 'fivem://connect/fivem.marocroleplay.com',
+            link = 'fivem://connect/mrp.marocroleplay.com',
         }
     },
 

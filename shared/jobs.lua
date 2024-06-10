@@ -540,6 +540,26 @@ return {
             },
         },
 	},
+	['cardealer3'] = {
+		label = 'CAR DEALER 3',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'REPRESENTATIVE',
+                payment = 50
+            },
+			[1] = {
+                name = 'MANAGER',
+                payment = 75
+            },
+			[2] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 150
+            },
+        },
+	},
 	['motordealer1'] = {
 		label = 'MOTORS DEALER 1',
 		defaultDuty = true,

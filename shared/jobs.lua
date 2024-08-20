@@ -47,48 +47,48 @@ return {
 		offDutyPay = false,
 		grades = {
             [0] = {
-                name = 'PEACE OFFICER',
+                name = 'PEACE KEEPER', -- 0
                 payment = 200
             },
 			[1] = {
-                name = 'INSPECTOR',
+                name = 'INSPECTOR', -- 4
                 payment = 250
             },
 			[2] = {
-                name = 'PRINCIPAL INSPECTOR',
+                name = 'PRINCIPAL INSPECTOR', -- 2
                 payment = 300
             },			
 			[3] = {
-                name = 'OFFICER',
+                name = 'OFFICER', -- 2
                 payment = 350
             },
 			[4] = {
-                name = 'PRINCIPAL OFFICER',
+                name = 'PRINCIPAL OFFICER', -- 2
                 payment = 400
             },			
 			[5] = {
-                name = 'COMMANDER',
+                name = 'COMMISSIONER', -- 2
                 payment = 450
             },
 			[6] = {
-                name = 'DIVISIONAL COMMANDER',
+                name = 'PRINCIPAL COMMISSIONER', -- 2
                 payment = 500
             },
 			[7] = {
-                name = 'COMMISSIONER',
+                name = 'REGIONAL COMMISSIONER', -- 2
                 payment = 550
-            },
-			[8] = {
-                name = 'DIVISIONAL COMMISSIONER',
-                payment = 600
             },			
+			[8] = {
+                name = 'GENERAL CONTROLLER', -- 2				
+                payment = 600
+            },
 			[9] = {
-                name = 'GENERAL CONTROLLER',
-				isboss = true,				
+                name = 'PREFECT OF POLICE', -- 1
+				isboss = true,
                 payment = 650
             },
 			[10] = {
-                name = 'PREFECT OF POLICE',
+                name = 'DGSN DIRECTOR', -- 1
 				isboss = true,
                 payment = 700
             },			
@@ -100,29 +100,29 @@ return {
 		offDutyPay = false,
 		grades = {
 			[0] = {
-                name = 'CAPORAL',
+                name = 'SERGEANT',
                 payment = 200
             },
 			[1] = {
-                name = 'SERGEANT',
+                name = 'CHIEF SERGEANT',
                 payment = 250
             },
 			[2] = {
-                name = 'SERGEANT CHEF',
+                name = 'ADJUDANT',
                 payment = 300
             },
 			[3] = {
-                name = 'ADJUDANT',
+                name = 'CHIEF ADJUDANT',
                 payment = 350
-            },			
+            },
 			[4] = {
-                name = 'ADJUDANT CHEF',
+                name = 'SUB-LIEUTENANT',
                 payment = 400
-            },		
+            },
 			[5] = {
                 name = 'LIEUTENANT',
                 payment = 450
-            },
+            },		
 			[6] = {
                 name = 'CAPTAIN',
                 payment = 500
@@ -132,16 +132,15 @@ return {
                 payment = 550
             },
 			[8] = {
-                name = 'COLONEL',
+                name = 'LIEUTENANT COLONEL',
                 payment = 600
             },
 			[9] = {
-                name = 'COLONEL MAJOR',
-				isboss = true,
+                name = 'COLONEL',
                 payment = 650
-            },			
+            },
 			[10] = {
-                name = 'GENERAL',
+                name = 'COLONEL MAJOR',
 				isboss = true,
                 payment = 700
             },
@@ -153,7 +152,7 @@ return {
 		offDutyPay = false,
 		grades = {
 			[0] = {
-                name = 'NURSE TRAINEE',
+                name = 'TRAINEE NURSE',
                 payment = 200
             },
 			[1] = {
@@ -161,7 +160,7 @@ return {
                 payment = 300
             },
 			[2] = {
-                name = 'DOCTOR',
+                name = 'PHYSICIAN',
                 payment = 400
             },
 			[3] = {
@@ -169,7 +168,7 @@ return {
                 payment = 500
             },					
 			[4] = {
-                name = 'DEPARTMENT MANAGER',
+                name = 'HOSPITAL MANAGER',
 				isboss = true,
                 payment = 600
             },			
@@ -375,7 +374,7 @@ return {
         },
     },
     ['coolbeans'] = {
-        label = 'CAFE COOL BEANS',
+        label = 'CAFE COOLBEANS',
         defaultDuty = false,
         offDutyPay = false,
         grades = {
@@ -558,7 +557,7 @@ return {
 	},
 	-- Car/Motorcycle/Boar Dealer Shops
 	['cardealer1'] = {
-		label = 'CAR DEALER 1',
+		label = 'SOUTH AUTOHALL',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -583,7 +582,7 @@ return {
         },
 	},
 	['cardealer2'] = {
-		label = 'CAR DEALER 2',
+		label = 'NORTH AUTOHALL',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -608,7 +607,7 @@ return {
         },
 	},
 	['cardealer3'] = {
-		label = 'CAR DEALER 3',
+		label = 'FOX IMPORTS',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -633,7 +632,7 @@ return {
         },
 	},
 	['motordealer1'] = {
-		label = 'MOTORS DEALER 1',
+		label = 'EXOTIC MOTORS',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -658,7 +657,7 @@ return {
         },
 	},
 	['motordealer2'] = {
-		label = 'MOTORS DEALER 2',
+		label = 'SANDERS MOTORS',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -683,7 +682,7 @@ return {
         },
 	},
 	['boatdealer1'] = {
-		label = 'BOATS DEALER',
+		label = 'VANGUARD BOATS',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -794,6 +793,32 @@ return {
 		grades = {
             [0] = {
                 name = 'TECHNICIAN',
+                payment = 100
+            },
+            [1] = {
+                name = 'SUPERVISOR',
+                payment = 100
+            },
+			[2] = {
+                name = 'MANAGER',
+                isboss = true,
+                payment = 100
+            },
+			[3] = {
+                name = 'OWNER',
+                isboss = true,
+                payment = 0
+            },
+        },
+	},
+	-- LIQUOR Shop
+	['liquorshop'] = {
+		label = 'ZNIBER SHOP',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            [0] = {
+                name = 'REPRESENTATIVE',
                 payment = 100
             },
             [1] = {

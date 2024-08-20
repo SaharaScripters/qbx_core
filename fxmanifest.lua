@@ -1,9 +1,10 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QBX_Core'
+name 'qbx_core'
+description 'The core resource for the Qbox Framework'
 repository 'https://github.com/Qbox-project/qbx_core'
-version '1.14.1'
+version '1.18.0'
 
 ox_lib 'locale'
 
@@ -11,6 +12,7 @@ shared_scripts {
     '@ox_lib/init.lua',
     'modules/lib.lua',
     'shared/locale.lua',
+    'shared/functions.lua',
 }
 
 client_scripts {

@@ -3,7 +3,7 @@ local defaultSpawn = require 'config.shared'.defaultSpawn
 
 if config.characters.useExternalCharacters then return end
 
-local previewCam = nil
+local previewCam
 local randomLocation = config.characters.locations[math.random(1, #config.characters.locations)]
 
 local randomPeds = {
@@ -140,6 +140,8 @@ local function destroyPreviewCam()
     DestroyCam(previewCam, true)
     RenderScriptCams(false, false, 1, true, true)
     FreezeEntityPosition(cache.ped, false)
+    DisplayRadar(true)
+    previewCam = nil
 end
 
 local function randomPed()
@@ -165,15 +167,7 @@ local function previewPed(citizenId)
     end
 end
 
----@class CharacterRegistration
----@field firstname string
----@field lastname string
----@field nationality string
----@field gender number
----@field birthdate string
----@field cid integer
-
----@return string[]?
+---@return CharacterRegistration?
 local function characterDialog()
     local nationalityOption = config.characters.limitNationalities and {
         type = 'select',
@@ -346,7 +340,6 @@ local function createCharacter(cid)
 
     if GetResourceState('qbx_spawn') == 'missing' then
         spawnDefault()
-        TriggerEvent('qb-clothes:client:CreateFirstCharacter')
     else
         if config.characters.startingApartment then
             TriggerEvent('apartments:client:setupSpawnUI', newData)
@@ -362,6 +355,7 @@ end
 local function chooseCharacter()
     randomLocation = config.characters.locations[math.random(1, #config.characters.locations)]
     SetFollowPedCamViewMode(2)
+    DisplayRadar(false)
 
     DoScreenFadeOut(500)
 

@@ -69,6 +69,7 @@ return {
         {'player_mails', 'citizenid'},
         {'player_outfits', 'citizenid'},
         {'player_vehicles', 'citizenid'},
+        {'player_groups', 'citizenid'},
         {'players', 'citizenid'},
         {'npwd_calls', 'identifier'},
         {'npwd_darkchat_channel_members', 'user_identifier'},
@@ -77,6 +78,8 @@ return {
         {'npwd_notes', 'identifier'},
         {'npwd_phone_contacts', 'identifier'},
         {'npwd_phone_gallery', 'identifier'},
+        {'npwd_twitter_profiles', 'identifier'},
+        {'npwd_match_profiles', 'identifier'},
     }, -- Rows to be deleted when the character is deleted
 
     server = {
@@ -97,25 +100,6 @@ return {
         },
 
         defaultNumberOfCharacters = 1, -- Define maximum amount of default characters (maximum 3 characters defined by default)
-    },
-
-    ---@type { name: string, amount: integer, metadata: fun(source: number): table }[]
-    starterItems = { -- Character starting items
-        -- { name = 'phone', amount = 1 },
-        -- { name = 'id_card', amount = 1, metadata = function(source)
-        --         if GetResourceState('qbx_idcard') ~= 'started' then
-        --             error('qbx_idcard resource not found. Required to give an id_card as a starting item')
-        --         end
-        --         return exports.qbx_idcard:GetMetaLicense(source, {'id_card'})
-        --     end
-        -- },
-        -- { name = 'driver_license', amount = 1, metadata = function(source)
-        --         if GetResourceState('qbx_idcard') ~= 'started' then
-        --             error('qbx_idcard resource not found. Required to give an id_card as a starting item')
-        --         end
-        --         return exports.qbx_idcard:GetMetaLicense(source, {'driver_license'})
-        --     end
-        -- },
     },
 
     -- this configuration is for core events only. putting other webhooks here will have no effect

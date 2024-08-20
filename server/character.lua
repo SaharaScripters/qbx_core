@@ -2,14 +2,15 @@ local config = require 'config.server'
 local logger = require 'modules.logger'
 local storage = require 'server.storage.main'
 local slots = require 'server.storage.slots'
+local starterItems = require 'config.shared'.starterItems
 
 ---@param license2 string
 ---@param license? string
 local function getAllowedAmountOfCharacters(license2, license)
     local result = slots.fetchSlots(license2, license)
-    local slots = result and result[1] and result[1].slots or nil
+    local playerSlots = result and result[1] and result[1].slots or nil
     return
-        slots or
+        playerSlots or
         config.characters.defaultNumberOfCharacters
 end
 
@@ -19,8 +20,8 @@ local function giveStarterItems(source)
     while not exports.ox_inventory:GetInventory(source) do
         Wait(100)
     end
-    for i = 1, #config.starterItems do
-        local item = config.starterItems[i]
+    for i = 1, #starterItems do
+        local item = starterItems[i]
         if item.metadata and type(item.metadata) == 'function' then
             exports.ox_inventory:AddItem(source, item.name, item.amount, item.metadata(source))
         else
@@ -31,14 +32,7 @@ end
 
 lib.callback.register('qbx_core:server:getCharacters', function(source)
     local license2, license = GetPlayerIdentifierByType(source, 'license2'), GetPlayerIdentifierByType(source, 'license')
-    local chars = storage.fetchAllPlayerEntities(license2, license)
-    local allowedAmount = getAllowedAmountOfCharacters(license2, license)
-    local sortedChars = {}
-    for i = 1, #chars do
-        local char = chars[i]
-        sortedChars[char.charinfo.cid] = char
-    end
-    return sortedChars, allowedAmount
+    return storage.fetchAllPlayerEntities(license2, license), getAllowedAmountOfCharacters(license2, license)
 end)
 
 lib.callback.register('qbx_core:server:getPreviewPedData', function(_, citizenId)

@@ -11,7 +11,7 @@ local function pay(player)
     if payment <= 0 then return end
     if not GetJob(job.name).offDutyPay and not job.onduty then return end
     if not config.money.paycheckSociety then
-        sendPaycheck(player, payment)
+        config.sendPaycheck(player, payment)
         return
     end
     local jobAccountName = job.name

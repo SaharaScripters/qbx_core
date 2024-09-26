@@ -768,6 +768,9 @@ function CreatePlayer(playerData, Offline)
         amount = qbx.math.round(tonumber(amount) --[[@as number]])
         if amount < 0 then return false end
         if not self.PlayerData.money[moneytype] then return false end
+        -- if moneytype == 'bank' and exports.ss_banking:isPersonalAccountFrozenFromSource(self.PlayerData.source) then
+        --     return false
+        -- end
         for _, mtype in pairs(config.money.dontAllowMinus) do
             if mtype == moneytype then
                 if (self.PlayerData.money[moneytype] - amount) < 0 then
@@ -779,6 +782,11 @@ function CreatePlayer(playerData, Offline)
 
         if not self.Offline then
             self.Functions.UpdatePlayerData()
+            if moneytype == 'bank' then
+                CreateThread(function()
+                    exports.ss_banking:handleWithdrawFromPersonalAccount(self.PlayerData.source, amount, self.PlayerData.money[moneytype], reason)
+                end)
+            end
             local tags = amount > 100000 and config.logging.role or nil
             local resource = GetInvokingResource() or cache.resource
             logger.log({

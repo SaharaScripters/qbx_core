@@ -105,9 +105,11 @@ local randomPeds = {
 local nationalities = {}
 
 if config.characters.limitNationalities then
+    local nationalityList = lib.load('data.nationalities')
+
     CreateThread(function()
-        for i = 1, #config.characters.nationalities do
-            nationalities[#nationalities + 1] = {value = config.characters.nationalities[i]}
+        for i = 1, #nationalityList do
+            nationalities[#nationalities + 1] = { value = nationalityList[i] }
         end
     end)
 end
@@ -367,8 +369,11 @@ local function chooseCharacter()
     Wait(1000)
     SetEntityCoords(cache.ped, randomLocation.pedCoords.x, randomLocation.pedCoords.y, randomLocation.pedCoords.z, false, false, false, false)
     SetEntityHeading(cache.ped, randomLocation.pedCoords.w)
-    ---@diagnostic disable-next-line: missing-parameter
-    lib.callback.await('qbx_core:server:setCharBucket')
+
+    if not NetworkIsInTutorialSession() then
+        NetworkStartSoloTutorialSession()
+    end
+
     Wait(1500)
     ShutdownLoadingScreen()
     ShutdownLoadingScreenNui()

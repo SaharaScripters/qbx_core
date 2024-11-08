@@ -1,3 +1,4 @@
+---Gang names must be lower case (top level table key)
 ---@type table<string, Gang>
 return {
 	['none'] = {
@@ -26,7 +27,7 @@ return {
 			[4] = {
                 name = 'UNDER-BOSS',
                 isboss = true
-            },			
+            },
 			[5] = {
                 name = 'BOSS',
                 isboss = true,
@@ -51,7 +52,7 @@ return {
 			[4] = {
                 name = 'UNDER-BOSS',
                 isboss = true
-            },			
+            },
 			[5] = {
                 name = 'BOSS',
                 isboss = true,
@@ -76,7 +77,7 @@ return {
 			[4] = {
                 name = 'UNDER-BOSS',
                 isboss = true
-            },			
+            },
 			[5] = {
                 name = 'BOSS',
                 isboss = true,
@@ -101,7 +102,7 @@ return {
 			[4] = {
                 name = 'UNDER-BOSS',
                 isboss = true
-            },			
+            },
 			[5] = {
                 name = 'BOSS',
                 isboss = true,

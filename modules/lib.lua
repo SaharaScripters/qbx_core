@@ -4,6 +4,7 @@ local qbx = {}
 qbx.string = {}
 qbx.math = {}
 qbx.table = {}
+qbx.array = {}
 
 qbx.armsWithoutGloves = lib.table.freeze({
     male = lib.table.freeze({
@@ -147,6 +148,21 @@ function qbx.table.mapBySubfield(tble, subfield)
     return map
 end
 
+---Returns true if the given array contains the given value.
+---@generic T
+---@param arr T[]
+---@param val T
+---@return boolean
+function qbx.array.contains(arr, val)
+    for i = 1, #arr do
+        if arr[i] == val then
+            return true
+        end
+    end
+
+    return false
+end
+
 ---Returns the number plate of the given vehicle.
 ---@param vehicle integer
 ---@return string?
@@ -260,7 +276,7 @@ if isServer then
         while GetVehicleNumberPlateText(veh) == '' do Wait(0) end
 
         if bucket and bucket > 0 then
-            SetEntityBucket(veh, bucket)
+            exports.qbx_core:SetEntityBucket(veh, bucket)
         end
 
         if ped then
@@ -300,7 +316,7 @@ if isServer then
         end
 
         local netId = NetworkGetNetworkIdFromEntity(veh)
-
+        exports.qbx_core:EnablePersistence(veh)
         return netId, veh
     end
 else
@@ -309,6 +325,8 @@ else
     ---@field scale? integer default: `0.35`
     ---@field font? integer default: `4`
     ---@field color? vector4 rgba, white by default
+    ---@field enableDropShadow? boolean 
+    ---@field enableOutline? boolean 
 
     ---@class LibDrawText2DParams : LibDrawTextParams
     ---@field coords vector2
@@ -325,12 +343,19 @@ else
         local color = params.color or vec4(255, 255, 255, 255)
         local width = params.width or 1.0
         local height = params.height or 1.0
+        local enableDropShadow = params.enableDropShadow or false
+        local enableOutline = params.enableOutline or false
 
         SetTextScale(scale, scale)
         SetTextFont(font)
         SetTextColour(math.floor(color.r), math.floor(color.g), math.floor(color.b), math.floor(color.a))
-        SetTextDropShadow()
-        SetTextOutline()
+        if enableDropShadow then
+            SetTextDropShadow()
+        end
+        if enableOutline then
+            SetTextOutline()
+        end
+
         SetTextCentre(true)
         BeginTextCommandDisplayText('STRING')
         AddTextComponentSubstringPlayerName(text)
@@ -340,19 +365,31 @@ else
     ---@class LibDrawText3DParams : LibDrawTextParams
     ---@field coords vector3
     ---@field disableDrawRect? boolean
+    ---@field scale? integer | vector2 default: `vec2(0.35,0.35)`
 
     ---Draws text onto the screen in 3D space for a single frame.
     ---@param params LibDrawText3DParams
     function qbx.drawText3d(params) -- luacheck: ignore
+        local isScaleparamANumber = type(params.scale) == "number"
         local text = params.text
         local coords = params.coords
-        local scale = params.scale or 0.35
+        local scale = (isScaleparamANumber and vec2(params.scale, params.scale))
+                  or params.scale
+                  or vec2(0.35, 0.35)
         local font = params.font or 4
         local color = params.color or vec4(255, 255, 255, 255)
+        local enableDropShadow = params.enableDropShadow or false
+        local enableOutline = params.enableOutline or false
 
-        SetTextScale(scale, scale)
+        SetTextScale(scale.x, scale.y)
         SetTextFont(font)
         SetTextColour(math.floor(color.r), math.floor(color.g), math.floor(color.b), math.floor(color.a))
+        if enableDropShadow then
+            SetTextDropShadow()
+        end
+        if enableOutline then
+            SetTextOutline()
+        end
         SetTextCentre(true)
         BeginTextCommandDisplayText('STRING')
         AddTextComponentSubstringPlayerName(text)
@@ -539,7 +576,7 @@ else
         end
 
         if returnSoundId then
-           return soundId
+            return soundId
         end
 
         ReleaseSoundId(soundId)

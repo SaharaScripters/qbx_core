@@ -1,3 +1,4 @@
+---Job names must be lower case (top level table key)
 ---@type table<string, Job>
 return {
 	['unemployed'] = {
@@ -43,9 +44,9 @@ return {
 	['police'] = {
 		label = 'DGSN',
         type = 'leo',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
+        defaultDuty = true,
+        offDutyPay = false,
+        grades = {
             [0] = {
                 name = 'PEACE KEEPER', -- 0
                 payment = 200
@@ -79,7 +80,7 @@ return {
                 payment = 550
             },
 			[8] = {
-                name = 'GENERAL CONTROLLER', -- 2	
+                name = 'GENERAL CONTROLLER', -- 2
 				isboss = true,
                 payment = 600
             },
@@ -182,7 +183,7 @@ return {
             },
         },
 	},
-	-- State Companies	
+	-- State Companies
 	['farmer'] = {
 		label = 'MAROC BIO',
 		defaultDuty = true,
@@ -401,7 +402,7 @@ return {
             },
         },
     },
-	-- Night Clubs	
+	-- Night Clubs
 	['unicorn'] = {
 		label = 'CLUB UNICORN',
         type = 'nightclub',
@@ -839,5 +840,5 @@ return {
                 payment = 0
             },
         },
-	},
+    },
 }

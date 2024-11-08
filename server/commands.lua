@@ -66,6 +66,7 @@ lib.addCommand('addpermission', {
         return
     end
 
+    ---@diagnostic disable-next-line: deprecated
     AddPermission(player.PlayerData.source, permission)
 end)
 
@@ -84,6 +85,7 @@ lib.addCommand('removepermission', {
         return
     end
 
+    ---@diagnostic disable-next-line: deprecated
     RemovePermission(player.PlayerData.source, permission)
 end)
 
@@ -176,7 +178,7 @@ lib.addCommand('dv', {
         for i = 1, #pedCars do
             local pedCar = NetworkGetEntityFromNetworkId(pedCars[i])
             if pedCar and DoesEntityExist(pedCar) then
-                DeleteEntity(pedCar)
+                DeleteVehicle(pedCar)
             end
         end
     end
@@ -336,20 +338,20 @@ lib.addCommand('ooc', {
     local playerCoords = GetEntityCoords(GetPlayerPed(source))
     for _, v in pairs(players) do
         if v == source then
-            TriggerClientEvent('chat:addMessage', v --[[@as Source]], {
+            exports.chat:addMessage(v --[[@as Source]], {
                 color = { 0, 0, 255},
                 multiline = true,
                 args = {('OOC | %s'):format(GetPlayerName(source)), message}
             })
         elseif #(playerCoords - GetEntityCoords(GetPlayerPed(v))) < 20.0 then
-            TriggerClientEvent('chat:addMessage', v --[[@as Source]], {
+            exports.chat:addMessage(v --[[@as Source]], {
                 color = { 0, 0, 255},
                 multiline = true,
                 args = {('OOC | %s'):format(GetPlayerName(source)), message}
             })
         elseif IsPlayerAceAllowed(v --[[@as string]], 'admin') then
             if IsOptin(v --[[@as Source]]) then
-                TriggerClientEvent('chat:addMessage', v --[[@as Source]], {
+                exports.chat:addMessage(v--[[@as Source]], {
                     color = { 0, 0, 255},
                     multiline = true,
                     args = {('Proximity OOC | %s'):format(GetPlayerName(source)), message}

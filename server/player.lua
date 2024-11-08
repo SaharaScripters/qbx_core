@@ -1250,6 +1250,12 @@ function RemoveMoney(identifier, moneyType, amount, reason)
     if not player.Offline then
         UpdatePlayerData(identifier)
 
+        if moneyType == 'bank' then
+            CreateThread(function()
+                exports.ss_banking:handleWithdrawFromPersonalAccount(player.PlayerData.source, amount, player.PlayerData.money[moneyType], reason)
+            end)
+        end
+
         local tags = amount > 100000 and config.logging.role or nil
         local resource = GetInvokingResource() or cache.resource
 

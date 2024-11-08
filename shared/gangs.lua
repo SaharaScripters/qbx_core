@@ -33,56 +33,6 @@ return {
             },
         },
 	},
-	['mafia1'] = {
-		label = 'MAFIA 1',
-		grades = {
-            [0] = {
-                name = 'ASSOCIATE'
-            },
-			[1] = {
-                name = 'ENFORCER'
-            },
-			[2] = {
-                name = 'CAPOREGIME'
-            },
-			[3] = {
-                name = 'CONSIGLIERE'
-            },
-			[4] = {
-                name = 'UNDER-BOSS',
-                isboss = true
-            },			
-			[5] = {
-                name = 'BOSS',
-                isboss = true,
-            },
-        },
-	},
-	['mafia2'] = {
-		label = 'MAFIA 2',
-		grades = {
-            [0] = {
-                name = 'ASSOCIATE'
-            },
-			[1] = {
-                name = 'ENFORCER'
-            },
-			[2] = {
-                name = 'CAPOREGIME'
-            },
-			[3] = {
-                name = 'CONSIGLIERE'
-            },
-			[4] = {
-                name = 'UNDER-BOSS',
-                isboss = true
-            },			
-			[5] = {
-                name = 'BOSS',
-                isboss = true,
-            },
-        },
-	},
 	['gang1'] = {
 		label = 'GANG 1',
 		grades = {
@@ -182,5 +132,105 @@ return {
                 isboss = true
             },
         },
-	}	
+	},
+	['gang5'] = {
+		label = 'GANG 5',
+		grades = {
+            [0] = {
+                name = 'ASSOCIATE'
+            },
+			[1] = {
+                name = 'ENFORCER'
+            },
+			[2] = {
+                name = 'CAPOREGIME'
+            },
+			[3] = {
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },
+			[5] = {
+                name = 'BOSS',
+                isboss = true
+            },
+        },
+	},
+	['gang6'] = {
+		label = 'GANG 6',
+		grades = {
+            [0] = {
+                name = 'ASSOCIATE'
+            },
+			[1] = {
+                name = 'ENFORCER'
+            },
+			[2] = {
+                name = 'CAPOREGIME'
+            },
+			[3] = {
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },
+			[5] = {
+                name = 'BOSS',
+                isboss = true
+            },
+        },
+	},
+	['gang7'] = {
+		label = 'GANG 7',
+		grades = {
+            [0] = {
+                name = 'ASSOCIATE'
+            },
+			[1] = {
+                name = 'ENFORCER'
+            },
+			[2] = {
+                name = 'CAPOREGIME'
+            },
+			[3] = {
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },
+			[5] = {
+                name = 'BOSS',
+                isboss = true
+            },
+        },
+	},
+	['gang8'] = {
+		label = 'GANG 8',
+		grades = {
+            [0] = {
+                name = 'ASSOCIATE'
+            },
+			[1] = {
+                name = 'ENFORCER'
+            },
+			[2] = {
+                name = 'CAPOREGIME'
+            },
+			[3] = {
+                name = 'CONSIGLIERE'
+            },
+			[4] = {
+                name = 'UNDER-BOSS',
+                isboss = true
+            },
+			[5] = {
+                name = 'BOSS',
+                isboss = true
+            },
+        },
+	},
 }

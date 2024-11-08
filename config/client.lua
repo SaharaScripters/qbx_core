@@ -253,7 +253,7 @@ return {
 
         largeIcon = { -- To set this up, visit https://forum.cfx.re/t/how-to-updated-discord-rich-presence-custom-image/157686
             icon = 'image1', -- Here you will have to put the image name for the 'large' icon.
-            text = 'Maroc RolePlay Server', -- Here you can add hover text for the 'large' icon.
+            text = 'Visit our Website https://www.marocroleplay.com', -- Here you can add hover text for the 'large' icon.
         },
 
         smallIcon = {

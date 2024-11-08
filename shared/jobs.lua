@@ -37,12 +37,12 @@ return {
                 name = 'MINISTER OF JUSTICE',
 				isboss = true,
                 payment = 0
-            },			
+            },
         },
 	},
 	['police'] = {
 		label = 'DGSN',
-        type = 'leo',		
+        type = 'leo',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -57,7 +57,7 @@ return {
 			[2] = {
                 name = 'PRINCIPAL INSPECTOR', -- 2
                 payment = 300
-            },			
+            },
 			[3] = {
                 name = 'OFFICER', -- 2
                 payment = 350
@@ -65,7 +65,7 @@ return {
 			[4] = {
                 name = 'PRINCIPAL OFFICER', -- 2
                 payment = 400
-            },			
+            },
 			[5] = {
                 name = 'COMMISSIONER', -- 2
                 payment = 450
@@ -77,13 +77,14 @@ return {
 			[7] = {
                 name = 'REGIONAL COMMISSIONER', -- 2
                 payment = 550
-            },			
+            },
 			[8] = {
-                name = 'GENERAL CONTROLLER', -- 2				
+                name = 'GENERAL CONTROLLER', -- 2	
+				isboss = true,
                 payment = 600
             },
 			[9] = {
-                name = 'PREFECT OF POLICE', -- 1
+                name = 'PREFECT', -- 1
 				isboss = true,
                 payment = 650
             },
@@ -91,7 +92,7 @@ return {
                 name = 'DGSN DIRECTOR', -- 1
 				isboss = true,
                 payment = 700
-            },			
+            },
         },
 	},
 	['civilprotection'] = {
@@ -122,7 +123,7 @@ return {
 			[5] = {
                 name = 'LIEUTENANT',
                 payment = 450
-            },		
+            },
 			[6] = {
                 name = 'CAPTAIN',
                 payment = 500
@@ -133,10 +134,12 @@ return {
             },
 			[8] = {
                 name = 'LIEUTENANT COLONEL',
+				isboss = true,
                 payment = 600
             },
 			[9] = {
                 name = 'COLONEL',
+				isboss = true,
                 payment = 650
             },
 			[10] = {
@@ -147,7 +150,7 @@ return {
         },
 	},
 	['ambulance'] = {
-		label = 'CHU',		
+		label = 'CHU',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -166,17 +169,17 @@ return {
 			[3] = {
                 name = 'SURGEON',
                 payment = 500
-            },					
+            },
 			[4] = {
                 name = 'HOSPITAL MANAGER',
 				isboss = true,
                 payment = 600
-            },			
+            },
 			[5] = {
                 name = 'HOSPITAL DIRECTOR',
 				isboss = true,
                 payment = 700
-            },			
+            },
         },
 	},
 	-- State Companies	
@@ -197,10 +200,10 @@ return {
                 name = 'MANAGER',
                 isboss = true,
                 payment = 100
-            },			
+            },
 			[3] = {
                 name = 'DIRECTOR',
-				isboss = true,					
+				isboss = true,
                 payment = 0
             },
         },
@@ -222,17 +225,17 @@ return {
                 name = 'MANAGER',
                 isboss = true,
                 payment = 100
-            },			
+            },
 			[3] = {
                 name = 'DIRECTOR',
-				isboss = true,					
+				isboss = true,
                 payment = 0
             },
         },
 	},
 	-- Public Job
 	['taxi'] = {
-		label = 'TAXIS MOROCCO',
+		label = 'UBER',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -278,7 +281,7 @@ return {
                 payment = 0
             },
         },
-	},		
+	},
 	['electrician'] = { -- SOON
 		label = 'ONEE',
 		defaultDuty = true,
@@ -294,7 +297,7 @@ return {
                 payment = 0
             },
         },
-	},	
+	},
 	-- Businesses
 	-- Restaurants
     ['burgershot'] = {
@@ -373,8 +376,8 @@ return {
             },
         },
     },
-    ['coolbeans'] = {
-        label = 'CAFE COOLBEANS',
+    ['dahab'] = {
+        label = 'CAFE DAHAB',
         defaultDuty = false,
         offDutyPay = false,
         grades = {
@@ -417,10 +420,10 @@ return {
                 name = 'MANAGER',
                 isboss = true,
                 payment = 100
-            },			
+            },
 			[3] = {
                 name = 'OWNER',
-				isboss = true,					
+				isboss = true,
                 payment = 0
             },
         },
@@ -443,10 +446,10 @@ return {
                 name = 'MANAGER',
                 isboss = true,
                 payment = 100
-            },			
+            },
 			[3] = {
                 name = 'OWNER',
-				isboss = true,					
+				isboss = true,
                 payment = 0
             },
         },
@@ -469,10 +472,10 @@ return {
                 name = 'MANAGER',
                 isboss = true,
                 payment = 100
-            },			
+            },
 			[3] = {
                 name = 'OWNER',
-				isboss = true,					
+				isboss = true,
                 payment = 0
             },
         },
@@ -495,14 +498,14 @@ return {
                 name = 'MANAGER',
                 isboss = true,
                 payment = 100
-            },			
+            },
 			[3] = {
                 name = 'OWNER',
-				isboss = true,					
+				isboss = true,
                 payment = 0
             },
         },
-	},	
+	},
 	-- law firm Office
 	['lawyer'] = {
 		label = 'LAW OFFICE',
@@ -510,7 +513,7 @@ return {
 		offDutyPay = false,
 		grades = {
             [0] = {
-                name = 'LAWYER TRAINEE',				
+                name = 'LAWYER TRAINEE',
                 payment = 100
             },
             [1] = {
@@ -524,9 +527,9 @@ return {
             },
             [3] = {
                 name = 'LAWYER FOUNDER',
-				isboss = true,				
+				isboss = true,
                 payment = 0
-            },			
+            },
         },
 	},
 	-- Bazar Shops
@@ -550,14 +553,14 @@ return {
             },
 			[3] = {
                 name = 'OWNER',
-				isboss = true,				
+				isboss = true,
                 payment = 0
             },
         },
 	},
 	-- Car/Motorcycle/Boar Dealer Shops
 	['cardealer1'] = {
-		label = 'SOUTH AUTOHALL',
+		label = 'AUTOHALL SOUTH',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -582,7 +585,7 @@ return {
         },
 	},
 	['cardealer2'] = {
-		label = 'NORTH AUTOHALL',
+		label = 'AUTOHALL NORTH',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -657,7 +660,7 @@ return {
         },
 	},
 	['motordealer2'] = {
-		label = 'SANDERS MOTORS',
+		label = 'LUXURY MOTORS',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -811,9 +814,9 @@ return {
             },
         },
 	},
-	-- LIQUOR Shop
-	['liquorshop'] = {
-		label = 'ZNIBER SHOP',
+	-- Chill Spot
+	['chillspot'] = {
+		label = 'CHILL SPOT',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {

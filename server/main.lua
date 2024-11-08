@@ -27,7 +27,7 @@ QBX.Shared = require 'shared.main'
 ---@type table<Source, Player>
 QBX.Players = {}
 GlobalState.PlayerCount = 0
-GlobalState.MaxPlayers = GetConvarInt('sv_maxclients', 128)
+GlobalState.MaxPlayers = GetConvarInt('sv_maxclients', 8)
 
 QBX.Player_Buckets = {}
 QBX.Entity_Buckets = {}
